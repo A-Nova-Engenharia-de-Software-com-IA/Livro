@@ -1,0 +1,120 @@
+[
+  {
+    "id": 1,
+    "paciente_id": 1,
+    "paciente_nome": "João da Silva",
+    "paciente_cpf": "123.456.789-00",
+    "tipo_exame": "Hemograma Completo",
+    "data_solicitacao": "2024-11-15",
+    "data_realizacao": "2024-11-16",
+    "data_resultado": "2024-11-18",
+    "status": "disponivel",
+    "medico_solicitante": "Dr. Carlos Silva",
+    "resultado": {
+      "hemoglobina": "14.5 g/dL",
+      "hematocrito": "42%",
+      "leucocitos": "6500/mm³",
+      "plaquetas": "250000/mm³",
+      "observacoes": "Valores dentro da normalidade"
+    }
+  },
+  {
+    "id": 2,
+    "paciente_id": 1,
+    "paciente_nome": "João da Silva",
+    "paciente_cpf": "123.456.789-00",
+    "tipo_exame": "Eletrocardiograma",
+    "data_solicitacao": "2024-11-15",
+    "data_realizacao": "2024-11-17",
+    "data_resultado": "2024-11-18",
+    "status": "disponivel",
+    "medico_solicitante": "Dr. Carlos Silva",
+    "resultado": {
+      "ritmo": "Sinusal",
+      "frequencia": "72 bpm",
+      "eixo": "Normal",
+      "observacoes": "ECG normal, sem alterações significativas"
+    }
+  },
+  {
+    "id": 3,
+    "paciente_id": 2,
+    "paciente_nome": "Maria Santos",
+    "paciente_cpf": "234.567.890-11",
+    "tipo_exame": "Biópsia de Pele",
+    "data_solicitacao": "2024-10-20",
+    "data_realizacao": "2024-10-22",
+    "data_resultado": "2024-10-28",
+    "status": "disponivel",
+    "medico_solicitante": "Dra. Ana Paula Santos",
+    "resultado": {
+      "diagnostico": "Nevo melanocítico benigno",
+      "observacoes": "Lesão benigna, sem características de malignidade"
+    }
+  },
+  {
+    "id": 4,
+    "paciente_id": 3,
+    "paciente_nome": "Pedro Oliveira",
+    "paciente_cpf": "345.678.901-22",
+    "tipo_exame": "Raio-X de Joelho",
+    "data_solicitacao": "2024-09-10",
+    "data_realizacao": "2024-09-11",
+    "data_resultado": "2024-09-12",
+    "status": "disponivel",
+    "medico_solicitante": "Dr. Roberto Mendes",
+    "resultado": {
+      "achados": "Sem fraturas aparentes",
+      "observacoes": "Leve desgaste articular, compatível com idade"
+    }
+  },
+  {
+    "id": 5,
+    "paciente_id": 4,
+    "paciente_nome": "Ana Costa",
+    "paciente_cpf": "456.789.012-33",
+    "tipo_exame": "Hemograma Infantil",
+    "data_solicitacao": "2024-11-01",
+    "data_realizacao": "2024-11-02",
+    "data_resultado": "2024-11-04",
+    "status": "disponivel",
+    "medico_solicitante": "Dra. Mariana Costa",
+    "resultado": {
+      "hemoglobina": "12.8 g/dL",
+      "hematocrito": "38%",
+      "leucocitos": "7200/mm³",
+      "plaquetas": "280000/mm³",
+      "observacoes": "Valores normais para a idade"
+    }
+  },
+  {
+    "id": 6,
+    "paciente_id": 5,
+    "paciente_nome": "Carlos Mendes",
+    "paciente_cpf": "567.890.123-44",
+    "tipo_exame": "Glicemia de Jejum",
+    "data_solicitacao": "2024-10-05",
+    "data_realizacao": "2024-10-06",
+    "data_resultado": "2024-10-07",
+    "status": "disponivel",
+    "medico_solicitante": "Dr. Fernando Oliveira",
+    "resultado": {
+      "glicemia": "95 mg/dL",
+      "observacoes": "Valor dentro da normalidade (70-100 mg/dL)"
+    }
+  },
+  {
+    "id": 7,
+    "paciente_id": 2,
+    "paciente_nome": "Maria Santos",
+    "paciente_cpf": "234.567.890-11",
+    "tipo_exame": "Exame de Sangue Completo",
+    "data_solicitacao": "2024-11-25",
+    "data_realizacao": null,
+    "data_resultado": null,
+    "status": "agendado",
+    "medico_solicitante": "Dra. Ana Paula Santos",
+    "resultado": null
+  }
+]
+

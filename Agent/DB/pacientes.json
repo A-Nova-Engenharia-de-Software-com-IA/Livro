@@ -1,0 +1,84 @@
+[
+  {
+    "id": 1,
+    "nome": "João da Silva",
+    "cpf": "123.456.789-00",
+    "data_nascimento": "1985-03-15",
+    "telefone": "(11) 98765-4321",
+    "email": "joao.silva@email.com",
+    "endereco": "Rua das Flores, 123 - São Paulo, SP",
+    "medico_responsavel_id": 1,
+    "historico_consultas": [
+      {"data": "2024-11-15", "medico": "Dr. Carlos Silva", "especialidade": "Cardiologia", "tipo": "consulta"}
+    ]
+  },
+  {
+    "id": 2,
+    "nome": "Maria Santos",
+    "cpf": "234.567.890-11",
+    "data_nascimento": "1990-07-22",
+    "telefone": "(11) 97654-3210",
+    "email": "maria.santos@email.com",
+    "endereco": "Av. Paulista, 456 - São Paulo, SP",
+    "medico_responsavel_id": 2,
+    "historico_consultas": [
+      {"data": "2024-10-20", "medico": "Dra. Ana Paula Santos", "especialidade": "Dermatologia", "tipo": "consulta"},
+      {"data": "2024-11-25", "medico": "Dra. Ana Paula Santos", "especialidade": "Dermatologia", "tipo": "retorno"}
+    ]
+  },
+  {
+    "id": 3,
+    "nome": "Pedro Oliveira",
+    "cpf": "345.678.901-22",
+    "data_nascimento": "1978-12-05",
+    "telefone": "(11) 96543-2109",
+    "email": "pedro.oliveira@email.com",
+    "endereco": "Rua Augusta, 789 - São Paulo, SP",
+    "medico_responsavel_id": 3,
+    "historico_consultas": [
+      {"data": "2024-09-10", "medico": "Dr. Roberto Mendes", "especialidade": "Ortopedia", "tipo": "consulta"},
+      {"data": "2024-10-15", "medico": "Dr. Roberto Mendes", "especialidade": "Ortopedia", "tipo": "retorno"}
+    ]
+  },
+  {
+    "id": 4,
+    "nome": "Ana Costa",
+    "cpf": "456.789.012-33",
+    "data_nascimento": "1995-05-18",
+    "telefone": "(11) 95432-1098",
+    "email": "ana.costa@email.com",
+    "endereco": "Rua Consolação, 321 - São Paulo, SP",
+    "medico_responsavel_id": 4,
+    "historico_consultas": [
+      {"data": "2024-11-01", "medico": "Dra. Mariana Costa", "especialidade": "Pediatria", "tipo": "consulta"}
+    ]
+  },
+  {
+    "id": 5,
+    "nome": "Carlos Mendes",
+    "cpf": "567.890.123-44",
+    "data_nascimento": "1982-09-30",
+    "telefone": "(11) 94321-0987",
+    "email": "carlos.mendes@email.com",
+    "endereco": "Av. Faria Lima, 654 - São Paulo, SP",
+    "medico_responsavel_id": 5,
+    "historico_consultas": [
+      {"data": "2024-10-05", "medico": "Dr. Fernando Oliveira", "especialidade": "Clínica Geral", "tipo": "consulta"},
+      {"data": "2024-11-10", "medico": "Dr. Fernando Oliveira", "especialidade": "Clínica Geral", "tipo": "retorno"}
+    ]
+  },
+  {
+    "id": 6,
+    "nome": "Juliana Ferreira",
+    "cpf": "678.901.234-55",
+    "data_nascimento": "1988-02-14",
+    "telefone": "(11) 93210-9876",
+    "email": "juliana.ferreira@email.com",
+    "endereco": "Rua dos Três Irmãos, 987 - São Paulo, SP",
+    "medico_responsavel_id": 1,
+    "historico_consultas": [
+      {"data": "2024-09-20", "medico": "Dr. Carlos Silva", "especialidade": "Cardiologia", "tipo": "consulta"}
+    ]
+  }
+]
+
