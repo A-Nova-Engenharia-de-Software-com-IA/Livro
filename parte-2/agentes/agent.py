@@ -19,18 +19,19 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+from contants.system_prompts import SYSTEM_CONTEXT
 from dotenv import load_dotenv
 from openai import OpenAI
 
 # ========================
 # CONFIGURAÇÃO
 # ========================
-# Load environment variables from .env file in the root directory
-root_dir = Path(__file__).parent.parent
+# Carrega variáveis de ambiente do arquivo .env na raiz do projeto
+root_dir = Path(__file__).parent.parent.parent
 env_path = root_dir / ".env"
 load_dotenv(env_path)
 
-# Also check for OPENAI_API_KEY in environment (takes precedence)
+# Verifica se a variável de ambiente OPENAI_API_KEY está configurada
 if not os.environ.get("OPENAI_API_KEY"):
     print("⚠️  AVISO: OPENAI_API_KEY não configurada!")
     print("   Crie um arquivo .env na raiz do projeto seguindo o exemplo em .env.example")
@@ -168,13 +169,11 @@ class AgenteClinica:
         """
         # Remove formatação do CPF
         cpf_limpo = cpf.replace(".", "").replace("-", "").replace(" ", "")
-        
-        for paciente in self.pacientes:
-            cpf_paciente_limpo = paciente["cpf"].replace(".", "").replace("-", "").replace(" ", "")
-            if cpf_limpo == cpf_paciente_limpo:
-                return paciente
-        
-        return None
+
+        return next(
+            (paciente for paciente in self.pacientes 
+                if paciente["cpf"].replace(".", "").replace("-", "").replace(" ", "") == cpf_limpo),
+            None)
     
     # Exames
     def obter_exames_paciente(self, paciente_id: int) -> List[Dict]:
@@ -208,6 +207,7 @@ class AgenteClinica:
         
         return texto
 
+    # Médicos
     def obter_medico_por_id(self, medico_id: int) -> Optional[Dict]:
         """Retorna dados do médico pelo ID."""
         for medico in self.medicos:
@@ -261,28 +261,7 @@ class AgenteClinica:
     # Preparar contexto do sistema
     def _preparar_contexto_sistema(self) -> str:
         """Prepara contexto do sistema para a IA."""
-        contexto = """Você é um assistente virtual de uma clínica médica. Seu papel é:
-1. Receber nome e CPF do paciente
-2. Buscar informações do paciente no banco de dados
-3. Identificar o que o paciente precisa (exame, consulta nova, retorno)
-4. Fornecer informações relevantes de forma clara e amigável
-
-Seja sempre educado, profissional e prestativo. Use emojis quando apropriado para tornar a conversa mais amigável.
-
-IMPORTANTE: 
-- Sempre trabalhe com data e horário atual do sistema.
-- Se o paciente ainda não forneceu nome e CPF, peça essas informações primeiro.
-- NUNCA revele se um CPF específico existe ou não no sistema sem validação completa de nome E CPF juntos.
-- Se paciente não estiver na base, fale que não foi encontrado no sistema, e pergunte se é novo paciente, e faça cadastro e comece processo de atendimento para nova consulta.
-- Se CPF e nome não correspondem, responda apenas: "Os dados informados não correspondem a um paciente cadastrado no sistema. Por favor, verifique o nome completo e o CPF e tente novamente."
-- Se há informações de "PACIENTE ATUAL IDENTIFICADO" no contexto abaixo, o paciente JÁ está identificado e você NÃO deve pedir nome e CPF novamente. Prossiga diretamente com o atendimento.
-- NUNCA invente horários ou datas que não estejam listados abaixo. Use APENAS os horários fornecidos no contexto.
-- Quando mencionar horários disponíveis, use EXATAMENTE os horários listados abaixo, sem modificar ou inventar.
-- Se após identificar o paciente e tiver exame pronto, e horários disponíveis para retorno, seja proativo em informar e sugerir retorno mostrando agenda do médico responsável.
-- Quando paciente pedir resultado de exame, já verifique se está pronto e mostre horários disponíveis para retorno, caso esteja pronto logo pergunta se deseja agendar retorno, verifique data do resultado com data atual para saver se está pronto para agendar retorno.
-- Quando paciente pedir para agendar nova consulta, e não informar especialidade, mostre as especialidades e os médicos disponíveis.
-- Quando tiver agendamentos confirmados, mostre todos os agendamentos confirmados com data e horário, independente se é retorno ou nova consulta, se fiz agendamentos separados, na confirmação, faça um resumo dos agendamentos confirmados.
-- Agenda do médico só mostra no contexto do paciente atual identificado, especialidade/médico escolhido, e quando for necessário pedir dia e horário para agendar consulta."""
+        contexto = SYSTEM_CONTEXT
 
         if self.paciente_atual:
             contexto += f"\n\n{'='*60}\n"
@@ -401,7 +380,7 @@ def main():
                 resposta_lower = resposta.lower()
                 
                 # Adiciona informações de exames se solicitado
-                if any(palavra in mensagem_lower for palavra in ["exame", "resultado", "exames"]):
+                if any(palavra in mensagem_lower for palavra in ["exame", "exames", "resultado", "resultados"]):
                     info_exames = agente.obter_informacoes_exames()
                     if info_exames not in resposta:
                         resposta += "\n" + info_exames
