@@ -17,13 +17,15 @@ O agente é capaz de:
 
 ```
 AI/                       # Raiz do projeto
-├── .env.example          # Exemplo de arquivo de configuração (copiar para .env)
-├── .env                  # Arquivo de configuração com API key (não commitado)
-└── Agent/
-    └── chatbot/
+├── .env                  # Arquivo de configuração com API key (criar manualmente)
+└── parte-2/
+    └── agentes/
         ├── agent.py              # Código principal do agente
-        ├── requirements.txt       # Dependências do projeto
+        ├── requirements.txt      # Dependências do projeto
         ├── README.md             # Este arquivo
+        ├── contants/             # Constantes e prompts do sistema
+        │   ├── __init__.py
+        │   └── system_prompts.py # Prompts e contextos do sistema
         └── DB/                   # Banco de dados em JSON
             ├── medicos.json      # Dados dos médicos e suas agendas
             ├── pacientes.json    # Dados dos pacientes
@@ -40,7 +42,7 @@ AI/                       # Raiz do projeto
 ### Passo 1: Instalar Dependências
 
 ```bash
-cd Agent/chatbot
+cd parte-2/agentes
 pip install -r requirements.txt
 ```
 
@@ -54,17 +56,16 @@ python3.10 -m pip install -r requirements.txt
 
 **Opção 1 - Arquivo .env (recomendado para desenvolvimento):**
 
-1. Na raiz do projeto (pasta `AI/`), copie o arquivo de exemplo:
+1. Na raiz do projeto (pasta `AI/`), crie um arquivo `.env`:
+
    ```bash
-   cp .env.example .env
+   touch .env
    ```
 
 2. Edite o arquivo `.env` e adicione sua chave da OpenAI:
    ```bash
    OPENAI_API_KEY=sk-sua-chave-aqui
    ```
-
-O arquivo `.env` está no `.gitignore` e não será commitado no repositório.
 
 **Opção 2 - Variável de ambiente do sistema:**
 
@@ -89,6 +90,7 @@ Ao executar o agente, você verá uma mensagem de boas-vindas. O agente pedirá 
 ### 2. Identificar-se
 
 Forneça seu nome e CPF. Exemplos:
+
 - "Meu nome é João da Silva, CPF 123.456.789-00"
 - "João Silva, 12345678900"
 - "Sou a Maria Santos, CPF 234.567.890-11"
@@ -135,11 +137,24 @@ O projeto inclui dados mock para demonstração:
 A classe principal que gerencia toda a lógica do agente:
 
 - **`carregar_dados()`**: Carrega dados dos arquivos JSON
+- **`identificar_paciente()`**: Identifica paciente a partir da mensagem
+- **`extrair_nome_cpf()`**: Extrai nome e CPF usando IA
 - **`buscar_paciente_por_cpf()`**: Busca paciente pelo CPF
 - **`buscar_paciente_por_nome_cpf()`**: Busca paciente por nome e CPF
 - **`obter_exames_paciente()`**: Retorna exames de um paciente
+- **`obter_informacoes_exames()`**: Formata informações dos exames
+- **`obter_medico_por_id()`**: Retorna dados do médico pelo ID
 - **`processar_mensagem()`**: Processa mensagem usando OpenAI
-- **`identificar_paciente()`**: Identifica paciente a partir da mensagem
+- **`_preparar_contexto_sistema()`**: Prepara contexto para a IA
+
+### Módulo de Constantes
+
+O arquivo `contants/system_prompts.py` contém:
+
+- **`SYSTEM_CONTEXT`**: Prompt do sistema com instruções detalhadas para o comportamento do agente
+- Define regras de identificação de pacientes
+- Instruções sobre agendamento e exames
+- Diretrizes para proatividade no atendimento
 
 ### Banco de Dados (JSON)
 
@@ -174,8 +189,9 @@ Este agente pode ser adaptado para:
 Para personalizar o agente:
 
 1. **Adicionar mais dados**: Edite os arquivos JSON em `DB/`
-2. **Modificar comportamento**: Ajuste o prompt do sistema em `_preparar_contexto_sistema()`
+2. **Modificar comportamento**: Ajuste o prompt do sistema em `contants/system_prompts.py`
 3. **Adicionar funcionalidades**: Estenda a classe `AgenteClinica`
+4. **Ajustar contexto dinâmico**: Modifique o método `_preparar_contexto_sistema()` em `agent.py`
 
 ## 🐛 Solução de Problemas
 
@@ -203,7 +219,7 @@ Verifique sua conexão com a internet e se sua API key é válida.
 
 👤 Você: Quero agendar uma consulta
 
-🤖 Assistente: Claro! Vejo que seu médico responsável é o Dr. Carlos Silva 
+🤖 Assistente: Claro! Vejo que seu médico responsável é o Dr. Carlos Silva
    (Cardiologia). Aqui estão os horários disponíveis para novas consultas:
 
 📅 Agenda disponível - Dr. Carlos Silva (Cardiologia):
@@ -231,8 +247,3 @@ Verifique sua conexão com a internet e se sua API key é válida.
 ## 📄 Licença
 
 Este é um exemplo educacional. Sinta-se livre para usar e modificar conforme necessário.
-
-## 👨‍💻 Autor
-
-Exemplo criado para demonstração de agentes AI em Python.
-
