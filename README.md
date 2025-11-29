@@ -18,7 +18,7 @@ Este repositório contém exemplos práticos e projetos relacionados aos princí
   - A abordagem de "cristal semente"
   - Use o system prompt
   - Truques estranhos de formatação
-  - Exemplo: um ótimo prompt
+  - **[Exemplo: um ótimo prompt](./parte-1/prompts/)**
 
 ### Parte 2: Construindo um Agente
 
