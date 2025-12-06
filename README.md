@@ -27,6 +27,7 @@ Este repositório contém exemplos práticos e projetos relacionados aos princí
   - ✅ **[Exemplo de Código](./parte-2/agentes/)**
 - **Roteamento de Modelos e Saída Estruturada**
   - Saída estruturada
+  - ✅ **[Exemplo de Código](./parte-2/roteamento-de-modelos/)**
 - **Uso de Ferramentas (Tool Calling)**
   - Como projetar suas ferramentas: o passo mais importante
   - Exemplo real: o agente de recomendação de livros da Alana
