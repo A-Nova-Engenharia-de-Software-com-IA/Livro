@@ -126,7 +126,7 @@ pip install -r requirements.txt ou python3.10 -m pip install -r requirements.txt
 export OPENAI_API_KEY="sua-chave-aqui"
 
 # 3. Execute o exemplo
-python tool_calling.py
+python3.10 tool_calling.py
 ```
 
 ## Estrutura do Exemplo

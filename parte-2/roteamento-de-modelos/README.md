@@ -69,6 +69,12 @@ Ou usando Python 3.10 especificamente:
 python3.10 -m pip install -r requirements.txt
 ```
 
+Execute
+
+```bash
+python3.10 router.py
+```
+
 ## Exemplo de saída
 
 ```
