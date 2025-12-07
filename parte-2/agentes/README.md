@@ -151,7 +151,7 @@ A classe principal que gerencia toda a lógica do agente:
 
 O arquivo `contants/system_prompts.py` contém:
 
-- **`SYSTEM_CONTEXT`**: Prompt do sistema com instruções detalhadas para o comportamento do agente
+- **`SYSTEM_PROMPT`**: Prompt do sistema com instruções detalhadas para o comportamento do agente
 - Define regras de identificação de pacientes
 - Instruções sobre agendamento e exames
 - Diretrizes para proatividade no atendimento

@@ -19,7 +19,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from contants.system_prompts import SYSTEM_CONTEXT
+from contants.system_prompts import SYSTEM_PROMPT
 from dotenv import load_dotenv
 from openai import OpenAI
 
@@ -261,7 +261,7 @@ class AgenteClinica:
     # Preparar contexto do sistema
     def _preparar_contexto_sistema(self) -> str:
         """Prepara contexto do sistema para a IA."""
-        contexto = SYSTEM_CONTEXT
+        contexto = SYSTEM_PROMPT
 
         if self.paciente_atual:
             contexto += f"\n\n{'='*60}\n"
