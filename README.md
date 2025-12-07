@@ -18,7 +18,7 @@ Este repositório contém exemplos práticos e projetos relacionados aos princí
   - A abordagem de "cristal semente"
   - Use o system prompt
   - Truques estranhos de formatação
-  - **[Exemplo: um ótimo prompt](./parte-1/prompts/)**
+  - **[Exemplo: um ótimo prompt](./parte-1/prompts/README.md)**
 
 ### Parte 2: Construindo um Agente
 
@@ -30,7 +30,7 @@ Este repositório contém exemplos práticos e projetos relacionados aos princí
   - ✅ **[Exemplo de Código](./parte-2/roteamento-de-modelos/)**
 - **Uso de Ferramentas (Tool Calling)**
   - Como projetar suas ferramentas: o passo mais importante
-  - Exemplo real: o agente de recomendação de livros da Alana
+  - ✅ **[Projeto Avançado: Tool Calling](./parte-2/chamada-de-ferramentas/)** - Evolução do agente com chamada de ferramentas
 - **Memória do Agente**
   - Memória de trabalho
   - Memória hierárquica
