@@ -1,0 +1,38 @@
+[
+  {
+    "id": "538fad59-5acd-4016-a8f9-f1ddce991e12",
+    "content": "• **Usuário**: Carlos, trabalha na TechCorp, focado em desenvolvimento de software.\n• **Projetos e Tecnologias**:\n  - Desenvolvimento full-stack com Python e TypeScript.\n  - Chatbot que armazena histórico de clientes usando PostgreSQL e pgvector.\n  - Análise de sentimento e aplicativo de gestão financeira pessoal.\n  \n• **Infraestrutura e Performance**:\n  - Utiliza API da OpenAI, enfrentando rate limiting com cerca de 10 mil requisições/dia.\n  - Implementação de cache com Redis e uso de Kubernetes para deploys.\n\n• **Estudo e Avaliação**:\n  - Estudando LLMs e avaliando o framework LangChain.\n  - Considerando sistema de feedback para melhorar respostas.\n\n• **Ambiente de Trabalho**:\n  - Prefere macOS e Linux em servidores, usa VS Code com JetBrains Mono e tema Dracula.\n  - Notion para notas e Linear para gerenciamento de tarefas.",
+    "source": "short_term_compression",
+    "timestamp": "2025-12-13T06:37:07.530149"
+  },
+  {
+    "id": "7e972e7a-454f-46ab-a61e-4e45e5adf176",
+    "content": "• **Usuário**: Carlos, trabalha na TechCorp, focado em desenvolvimento com Python, TypeScript, FastAPI e Next.js.  \n• **Projetos**: Desenvolvimento de um chatbot que lembra o histórico do cliente, utilizando PostgreSQL e pgvector.  \n• **Desempenho**: Preocupações com rate limiting da API da OpenAI e implementação de um sistema de feedback do usuário.  \n• **Estudo**: Carlos está estudando inteligência artificial e LLMs, avaliando o uso do framework LangChain.  \n• **Infraestrutura**: Utiliza Redis para cache, Kubernetes para deploys e enfrenta cerca de 10 mil requisições diárias.  \n• **Ambiente de Trabalho**: Prefere macOS e Linux, usa VS Code com JetBrains Mono e tema Dracula, Notion para notas e Linear para tarefas.  \n• **Equipe**: TechCorp é uma fintech com 12 pessoas, 4 focadas em IA.",
+    "source": "short_term_compression",
+    "timestamp": "2025-12-13T06:37:26.848847"
+  },
+  {
+    "id": "c8bc5039-dc34-4a60-8be9-a2e42fe65723",
+    "content": "• **Projetos e Tecnologias**:\n  - Desenvolvimento full-stack com Python e TypeScript, usando FastAPI e Next.js.\n  - Chatbot que lembra histórico do cliente, utilizando PostgreSQL e pgvector.\n\n• **Infraestrutura e Performance**:\n  - Problemas com rate limiting na API da OpenAI, processando cerca de 10 mil requisições/dia.\n  - Implementação de cache com Redis e uso de Kubernetes para deploys.\n\n• **Estudo e Avaliação**:\n  - Estudando LLMs e avaliando o framework LangChain.\n  - Considerando um sistema de feedback do usuário.\n\n• **Ambiente de Trabalho**:\n  - Preferência por macOS e Linux em servidores, uso do VS Code com fonte JetBrains Mono e tema Dracula.\n  - Notion para notas e Linear para gerenciamento de tarefas.\n\n• **Equipe e Empresa**:\n  - Trabalha na TechCorp, uma fintech com 12 pessoas, sendo",
+    "source": "short_term_compression",
+    "timestamp": "2025-12-13T06:37:52.360838"
+  },
+  {
+    "id": "8d5c43a9-50bd-4994-bd64-971d4531735a",
+    "content": "• Usuário: Carlos, prefere resumos completos em tópicos.  \n• Projetos e Tecnologias:  \n  - Desenvolvimento full-stack com Python e TypeScript, usando FastAPI e Next.js.  \n  - Criação de um chatbot que armazena histórico de clientes com PostgreSQL e pgvector.  \n  - Implementação de análise de sentimento e aplicativo de gestão financeira.  \n• Infraestrutura:  \n  - Enfrentando problemas de rate limiting na API da OpenAI, processando 10 mil requisições/dia.  \n  - Uso de Redis para cache e Kubernetes para deploys.  \n• Estudo:  \n  - Estudando LLMs e considerando o uso do LangChain.  \n  - Pensando em um sistema de feedback para melhorar respostas.  \n• Ambiente de Trabalho:  \n  - Prefere macOS e Linux, usa VS Code com JetBrains Mono e tema Dracula.  \n  - Utiliza Notion para notas e Linear para",
+    "source": "short_term_compression",
+    "timestamp": "2025-12-13T06:38:00.384654"
+  },
+  {
+    "id": "d6e6dba8-fa38-4aac-8f7d-6248a2180212",
+    "content": "• Carlos está envolvido em desenvolvimento full-stack, com foco em Python e TypeScript, utilizando FastAPI e Next.js.  \n• Está desenvolvendo um chatbot para sua empresa, que requer a memória do cliente e usa PostgreSQL e pgvector.  \n• Enfrenta desafios com rate limiting na API da OpenAI, processando cerca de 10 mil requisições por dia.  \n• Implementou um sistema de cache com Redis e utiliza Kubernetes para deploys.  \n• Estuda LLMs e considera o uso do framework LangChain, além de planejar um sistema de feedback para o chatbot.  \n• Prefere trabalhar em macOS e Linux, usando VS Code com JetBrains Mono e tema Dracula, e gerencia tarefas com Linear e notas no Notion.  \n• Trabalha na TechCorp, uma fintech com 12 pessoas, sendo 4 focadas em IA, e planeja lançar um assistente virtual em março de 2025.",
+    "source": "short_term_compression",
+    "timestamp": "2025-12-13T07:09:20.955821"
+  },
+  {
+    "id": "17cdbd91-295e-4c45-a134-5f9be372ed7d",
+    "content": "• Carlos Silva está interessado em LLMs e memória de agente.  \n• Discutiu definições, exemplos e desafios dos LLMs, como custo e qualidade das respostas.  \n• Abordou a importância da memória de agente para personalização e experiência do usuário.  \n• Mencionou a necessidade de implementar memória em seu chatbot, que armazena o histórico do cliente.  \n• Carlos é desenvolvedor full-stack com 8 anos de experiência, focado em Python e TypeScript.  \n• Enfrenta problemas de rate limiting na API da OpenAI e implementou um sistema de cache com Redis.  \n• Estuda inteligência artificial e LLMs, considerando o uso do LangChain e um sistema de feedback para o chatbot.  \n• Trabalha na TechCorp, uma fintech com 12 pessoas, 4 focadas em IA.  \n• Prefere trabalhar de manhã, utiliza macOS/Linux, VS Code, Notion e Linear.",
+    "source": "short_term_compression",
+    "timestamp": "2025-12-13T07:09:37.109642"
+  }
+]

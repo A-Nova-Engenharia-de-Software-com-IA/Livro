@@ -8,35 +8,19 @@ Este repositório contém exemplos práticos e projetos relacionados aos princí
 
 - **Uma Breve História das LLMs**
 - **Escolhendo um Provedor e um Modelo**
-  - Hosted vs open-source
-  - Tamanho do modelo: acurácia vs custo/latência
-  - Tamanho da janela de contexto
-  - Modelos de raciocínio
-  - Provedores e modelos (maio de 2025)
 - **Como Escrever Bons Prompts**
-  - Dê mais exemplos ao LLM
-  - A abordagem de "cristal semente"
-  - Use o system prompt
-  - Truques estranhos de formatação
   - **[Exemplo: um ótimo prompt](./parte-1/prompts/README.md)**
 
 ### Parte 2: Construindo um Agente
 
 - **Agentes**
-  - Níveis de Autonomia
   - ✅ **[Exemplo de Código](./parte-2/agentes/)**
 - **Roteamento de Modelos e Saída Estruturada**
-  - Saída estruturada
   - ✅ **[Exemplo de Código](./parte-2/roteamento-de-modelos/)**
 - **Uso de Ferramentas (Tool Calling)**
-  - Como projetar suas ferramentas: o passo mais importante
-  - ✅ **[Projeto Avançado: Tool Calling](./parte-2/chamada-de-ferramentas/)** - Evolução do agente com chamada de ferramentas
+  - ✅ **[Exemplo de código](./parte-2/chamada-de-ferramentas/)**
 - **Memória do Agente**
-  - Memória de trabalho
-  - Memória hierárquica
-  - Processadores de memória
-  - TokenLimiter
-  - ToolCallFilter
+  - ✅ **[Exemplo de código](./parte-2/memória-do-agente/)**
 - **Agentes Dinâmicos**
   - O que são agentes dinâmicos?
   - Exemplo: criando um agente dinâmico

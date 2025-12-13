@@ -1,0 +1,73 @@
+[
+  {
+    "user_id": "user_001",
+    "nome": "Carlos Silva",
+    "email": "carlos@email.com",
+    "preferencias": {
+      "nome_tratamento": "Carlos",
+      "horario_preferido": "manhã",
+      "tom_comunicacao": "informal",
+      "idioma": "pt-BR"
+    },
+    "contexto": {
+      "area_interesse": "tecnologia",
+      "nivel_tecnico": "avançado",
+      "objetivo_principal": "produtividade"
+    },
+    "tickets_suporte": [
+      {
+        "assunto": "Dúvida sobre integração de APIs",
+        "data": "2025-10-15",
+        "status": "resolvido"
+      },
+      {
+        "assunto": "Problema com autenticação",
+        "data": "2025-11-02",
+        "status": "resolvido"
+      }
+    ],
+    "notas": "Prefere respostas diretas e técnicas. Já trabalhou com Python e Node.js."
+  },
+  {
+    "user_id": "user_002",
+    "nome": "Maria Santos",
+    "email": "maria@email.com",
+    "preferencias": {
+      "nome_tratamento": "Mari",
+      "horario_preferido": "tarde",
+      "tom_comunicacao": "amigável",
+      "idioma": "pt-BR"
+    },
+    "contexto": {
+      "area_interesse": "design e marketing",
+      "nivel_tecnico": "intermediário",
+      "objetivo_principal": "criatividade"
+    },
+    "tickets_suporte": [
+      {
+        "assunto": "Como criar templates personalizados",
+        "data": "2025-09-20",
+        "status": "resolvido"
+      }
+    ],
+    "notas": "Gosta de exemplos visuais e passo-a-passo. Trabalha com Canva e Figma."
+  },
+  {
+    "user_id": "user_003",
+    "nome": "João Oliveira",
+    "email": "joao@email.com",
+    "preferencias": {
+      "nome_tratamento": "João",
+      "horario_preferido": "noite",
+      "tom_comunicacao": "formal",
+      "idioma": "pt-BR"
+    },
+    "contexto": {
+      "area_interesse": "finanças e gestão",
+      "nivel_tecnico": "básico",
+      "objetivo_principal": "organização pessoal"
+    },
+    "tickets_suporte": [],
+    "notas": "Primeira interação com o sistema. Preferência por explicações detalhadas."
+  }
+]

@@ -1,0 +1,12 @@
+# Dependências para o Sistema de Memória de Agente
+# Execute: pip install -r requirements.txt
+
+# OpenAI - API para LLM e Embeddings
+openai>=1.0.0
+
+# Variáveis de ambiente
+python-dotenv>=1.0.0
+
+# Cálculos vetoriais (similaridade de cosseno)
+numpy>=1.24.0
+

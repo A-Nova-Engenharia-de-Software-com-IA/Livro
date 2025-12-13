@@ -1,0 +1,225 @@
+{
+  "user_id": "user_001",
+  "profile": {},
+  "interactions": [],
+  "preferences": {
+    "documentação": "técnica direta",
+    "sistema_operacional_preferido": "macOS",
+    "uso_adicional": "Linux em servidores",
+    "decisão": "usar ou fazer do zero",
+    "estilo": "mais completo",
+    "formato": "tópicos"
+  },
+  "facts": [
+    {
+      "content": "O nome do usuário é Carlos",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:09:11.639884"
+    },
+    {
+      "content": "Carlos trabalha como desenvolvedor full-stack há 8 anos",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:09:11.640594"
+    },
+    {
+      "content": "Usuário está focado em projetos com Python e TypeScript",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:09:16.671637"
+    },
+    {
+      "content": "Usuário tem experiência com Go",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:09:16.672302"
+    },
+    {
+      "content": "Usuário trabalha com FastAPI no backend",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:09:25.046292"
+    },
+    {
+      "content": "Usuário trabalha com Next.js no frontend",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:09:25.047088"
+    },
+    {
+      "content": "O usuário prefere trabalhar de manhã cedo",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:09:35.131934"
+    },
+    {
+      "content": "O usuário geralmente começa a trabalhar às 6h",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:09:35.132551"
+    },
+    {
+      "content": "Usuário está estudando sobre inteligência artificial",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:09:48.483988"
+    },
+    {
+      "content": "Usuário está estudando sobre LLMs",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:09:48.485310"
+    },
+    {
+      "content": "Usuário gosta de usar o VS Code",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:10:13.110878"
+    },
+    {
+      "content": "Usuário prefere a fonte JetBrains Mono",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:10:13.111259"
+    },
+    {
+      "content": "Usuário utiliza o tema Dracula",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:10:13.111910"
+    },
+    {
+      "content": "O usuário utiliza Notion para notas pessoais",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:10:17.440760"
+    },
+    {
+      "content": "O usuário utiliza Linear para gerenciamento de tarefas do time",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:10:17.441411"
+    },
+    {
+      "content": "O usuário prefere o sistema operacional macOS",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:10:22.688847"
+    },
+    {
+      "content": "O usuário também utiliza Linux em servidores",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:10:22.689501"
+    },
+    {
+      "content": "Usuário utiliza Docker e Kubernetes no dia a dia",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:10:29.045652"
+    },
+    {
+      "content": "Kubernetes é essencial para os deploys do usuário",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:10:29.046444"
+    },
+    {
+      "content": "Usuário está enfrentando problemas com rate limiting na API da OpenAI.",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:11:04.960313"
+    },
+    {
+      "content": "Usuário está desenvolvendo um chatbot para a empresa",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:11:29.974433"
+    },
+    {
+      "content": "Chatbot precisa lembrar o histórico do cliente",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:11:29.974859"
+    },
+    {
+      "content": "O projeto utiliza PostgreSQL como sistema de gerenciamento de banco de dados.",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:11:43.902228"
+    },
+    {
+      "content": "O projeto utiliza pgvector para armazenar embeddings.",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:11:43.902848"
+    },
+    {
+      "content": "A API processa cerca de 10 mil requisições por dia",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:11:59.671866"
+    },
+    {
+      "content": "Performance é crítica para o usuário",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:11:59.672336"
+    },
+    {
+      "content": "Usuário implementou um sistema de cache com Redis",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:12:21.280316"
+    },
+    {
+      "content": "Usuário utiliza a API da OpenAI",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:12:21.281168"
+    },
+    {
+      "content": "O usuário enfrenta desafios em balancear custo e qualidade das respostas.",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:12:34.797673"
+    },
+    {
+      "content": "O usuário está pensando em implementar um sistema de feedback do usuário.",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:13:38.675738"
+    },
+    {
+      "content": "O usuário está avaliando o uso do framework LangChain.",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:13:52.899937"
+    },
+    {
+      "content": "O usuário trabalha na empresa TechCorp",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:14:25.178455"
+    },
+    {
+      "content": "TechCorp é uma startup de fintech",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:14:25.179195"
+    },
+    {
+      "content": "A equipe de desenvolvimento tem 12 pessoas",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:14:30.015542"
+    },
+    {
+      "content": "4 pessoas da equipe são focadas em IA",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:14:30.017525"
+    },
+    {
+      "content": "O usuário está desenvolvendo um aplicativo de gestão financeira pessoal",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:14:49.522758"
+    },
+    {
+      "content": "O aplicativo oferece insights automáticos",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:14:49.525080"
+    },
+    {
+      "content": "O usuário trabalha com análise de sentimento",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:15:03.614315"
+    },
+    {
+      "content": "O usuário analisa reviews de usuários",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:15:03.614988"
+    },
+    {
+      "content": "O próximo milestone é lançar o assistente virtual até março de 2025.",
+      "source": "conversation",
+      "timestamp": "2025-12-12T07:15:19.324512"
+    },
+    {
+      "content": "O usuário está interessado em LLM (Modelos de Linguagem de Grande Escala)",
+      "source": "conversation",
+      "timestamp": "2025-12-13T06:37:10.840319"
+    },
+    {
+      "content": "O usuário quer discutir sobre memória de agente",
+      "source": "conversation",
+      "timestamp": "2025-12-13T06:37:10.841840"
+    }
+  ]
+}
