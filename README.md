@@ -22,9 +22,7 @@ Este repositório contém exemplos práticos e projetos relacionados aos princí
 - **Memória do Agente**
   - ✅ **[Exemplo de código](./parte-2/memoria-do-agente/)**
 - **Agentes Dinâmicos**
-  - O que são agentes dinâmicos?
-  - Exemplo: criando um agente dinâmico
-  - Middleware de agente
+  - ✅ **[Exemplo de código](./parte-2/agentes-dinamicos/)**
 - **Middleware de Agente**
   - Guardrails
   - Autenticação e autorização do agente
