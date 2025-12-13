@@ -20,7 +20,7 @@ Este repositório contém exemplos práticos e projetos relacionados aos princí
 - **Uso de Ferramentas (Tool Calling)**
   - ✅ **[Exemplo de código](./parte-2/chamada-de-ferramentas/)**
 - **Memória do Agente**
-  - ✅ **[Exemplo de código](./parte-2/memória-do-agente/)**
+  - ✅ **[Exemplo de código](./parte-2/memoria-do-agente/)**
 - **Agentes Dinâmicos**
   - O que são agentes dinâmicos?
   - Exemplo: criando um agente dinâmico
