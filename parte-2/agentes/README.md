@@ -49,7 +49,7 @@ pip install -r requirements.txt
 Ou usando Python 3.10 especificamente:
 
 ```bash
-python3.10 -m pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 ### Passo 2: Configurar API Key da OpenAI
@@ -78,7 +78,7 @@ export OPENAI_API_KEY="sua-chave-aqui"
 ### Passo 3: Executar o Agente
 
 ```bash
-python3.10 agent.py
+python agent.py
 ```
 
 ## 💬 Como Usar

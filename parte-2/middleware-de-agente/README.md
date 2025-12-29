@@ -62,7 +62,7 @@ suspicious_keywords = {
 
 ```bash
 cd parte-2/middleware-de-agente
-python3.10 prompt_injection_protection.py
+python prompt_injection_protection.py
 ```
 
 ## Exemplo de Saída

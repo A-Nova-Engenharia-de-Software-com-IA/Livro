@@ -120,13 +120,13 @@ if nome_ferramenta not in FUNCOES_DISPONIVEIS:
 
 ```bash
 # 1. Instale as dependências
-pip install -r requirements.txt ou python3.10 -m pip install -r requirements.txt
+pip install -r requirements.txt ou python -m pip install -r requirements.txt
 
 # 2. Configure sua API key
 export OPENAI_API_KEY="sua-chave-aqui"
 
 # 3. Execute o exemplo
-python3.10 tool_calling.py
+python tool_calling.py
 ```
 
 ## Estrutura do Exemplo
