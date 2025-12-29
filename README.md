@@ -39,6 +39,7 @@ Este repositório contém exemplos práticos e projetos relacionados aos princí
   - Quando usar MCP
   - Construindo um Servidor e Cliente MCP
   - O futuro do MCP
+  - ✅ **[Exemplo de código](./parte-3/mcp/)**
 
 ### Parte 4: Workflow Baseados em Grafos
 
