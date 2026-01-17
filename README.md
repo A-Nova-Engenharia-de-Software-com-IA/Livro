@@ -86,6 +86,7 @@ Este repositório contém exemplos práticos e projetos relacionados aos princí
 ### Parte 6: Sistemas Multiagentes
 
 - **Multi-Agente**
+  - ✅ **[Exemplo de código](./parte-6/multi-agentes/)**
 - **Supervisor de Agentes**
 - **Fluxo de Controle**
 - **Workflows como Ferramentas**
@@ -102,31 +103,7 @@ Este repositório contém exemplos práticos e projetos relacionados aos princí
   - Entendimento de contexto
   - Saída
   - Exemplo de Código
-- **Outros Tipos de Evals**
-  - Evals de Classificação ou Rotulagem
-  - Evals de Uso de Ferramentas por Agentes
-  - Evals de Engenharia de Prompt
-  - Testes A/B
-  - Revisão de dados por humanos
-
-### Parte 8: Desenvolvimento & Deployment
-
-- **Desenvolvimento Local**
-  - Construindo um frontend web agentivo
-  - Construindo um backend de agentes
-- **Deployment**
-  - Desafios de deployment
-  - Uso de plataformas gerenciadas
-
-### Parte 9: Outros Assuntos
-
-- **Multimodal**
-  - Geração de Imagens
-  - Casos de uso
-  - Voz
-  - Vídeo
-- **Geração de Código**
-- **O Que Vem a Seguir**
+- ✅ **[Exemplo de código](./parte-7/avaliacao-textual/)**
 
 ## 🚀 Começando
 

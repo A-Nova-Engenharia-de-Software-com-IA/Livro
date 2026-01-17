@@ -15,21 +15,21 @@ Um sistema multi-agente é como uma equipe especializada dentro de uma empresa. 
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    EQUIPE DE DESENVOLVIMENTO                     │
+│                    EQUIPE DE DESENVOLVIMENTO                    │
 ├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│   👔 GERENTE          →   📐 PLANEJADOR                         │
+│                                                                 │
+│   👔 GERENTE          →   📐 PLANEJADOR                          │
 │   • Analisa pedidos       • Define arquitetura                  │
 │   • Define requisitos     • Escolhe tecnologias                 │
 │   • Coordena equipe       • Cria plano técnico                  │
-│                                                                  │
+│                                                                 │
 │           ↓                        ↓                            │
-│                                                                  │
-│   💻 DESENVOLVEDOR    ←   🔍 REVISOR                            │
+│                                                                 │
+│   💻 DESENVOLVEDOR    ←   🔍 REVISOR                             │
 │   • Escreve código        • Analisa qualidade                   │
 │   • Implementa plano      • Identifica bugs                     │
 │   • Segue padrões         • Sugere melhorias                    │
-│                                                                  │
+│                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -72,7 +72,7 @@ AI/                           # Raiz do projeto
 
 ### Pré-requisitos
 
-- Python 3.10 ou superior
+- Python
 - Conta na OpenAI com API key
 
 ### Passo 1: Instalar Dependências
