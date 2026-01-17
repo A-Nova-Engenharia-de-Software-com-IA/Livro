@@ -26,6 +26,7 @@ Este repositório contém exemplos práticos e projetos relacionados aos princí
 - **Middleware de Agente**
   - Guardrails
   - Autenticação e autorização do agente
+  - ✅ **[Exemplo de código](./parte-2/middleware-de-agente/)**
 
 ### Parte 3: Ferramentas (Tools) e MCP
 
@@ -50,11 +51,14 @@ Este repositório contém exemplos práticos e projetos relacionados aos princí
   - Mesclagem (Merging)
   - Condições
   - Boas práticas e notas
+  - ✅ **[Exemplo de código](./parte-4/workflows/)**
 - **Suspender e Retomar**
+  - ✅ **[Exemplo de código](./parte-4/suspender-e-continuar/)**
 - **Atualizações via Streaming**
   - Como fazer streaming dentro de funções
   - Por que streaming importa
   - Como construir
+  - ✅ **[Exemplo de código](./parte-4/streaming/)**
 - **Observabilidade e Tracing**
   - Observabilidade
   - Tracing
@@ -77,6 +81,7 @@ Este repositório contém exemplos práticos e projetos relacionados aos princí
   - RAG com Agentes (Agentic RAG)
   - Geração Aumentada por Raciocínio (ReAG)
   - Carregamento de Contexto Completo
+- ✅ **[Exemplo de código](./parte-5/rag/)**
 
 ### Parte 6: Sistemas Multiagentes
 
