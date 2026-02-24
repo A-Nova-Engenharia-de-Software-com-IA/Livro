@@ -1,0 +1,61 @@
+# =====================
+# Node / NPM
+# =====================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =====================
+# Environment variables
+# =====================
+.env
+.env.*
+!.env.example
+
+# =====================
+# Mastra build / runtime
+# =====================
+.mastra/
+.dist/
+dist/
+build/
+.out/
+output/
+
+# =====================
+# TypeScript
+# =====================
+*.tsbuildinfo
+
+# =====================
+# Logs
+# =====================
+logs/
+*.log
+
+# =====================
+# OS / Editor
+# =====================
+.DS_Store
+Thumbs.db
+
+# VSCode / Cursor / Continue
+.vscode/
+.continue/
+
+# =====================
+# Cache / Temp
+# =====================
+.cache/
+.tmp/
+temp/
+
+# =====================
+# Coverage / Test
+# =====================
+coverage/
+
+.DS_Store
+**/.DS_Store
