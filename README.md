@@ -108,3 +108,39 @@ Este repositório contém exemplos práticos e projetos relacionados aos princí
 ## 🚀 Começando
 
 Cada pasta contém exemplos práticos e documentação específica sobre os tópicos abordados. Explore as pastas para ver implementações reais dos conceitos apresentados.
+
+
+### PARTE 8: AGENTES (PARTE-8-AGENTES)
+Resumo: Esta parte reúne exemplos práticos de agentes (processos capazes de tomar decisões e chamar ferramentas) usados em projetos reais. Os exemplos demonstram como orquestrar chamadas a APIs, integrar com Slack/ClickUp, enviar emails e compor workflows usando o MCP e pequenas ferramentas locais.
+
+Arquivos chave:
+
+clickup-agent.ts — agente que consulta e processa dados do ClickUp.
+clickup-slack-general.ts — conecta ClickUp com Slack.
+email-agent.ts — agente para envio de relatórios por email.
+ops-orchestrator-agent.ts — orquestrador de operações entre agentes.
+search-agent.ts — agente de busca e indexação.
+slack-agent.ts — integração e envio de mensagens no Slack.
+weather-agent.ts — consulta APIs de clima.
+Ferramentas de exemplo (callers):
+
+call-clickup-agent.ts
+call-email-agent.ts
+call-search-agent.ts
+call-slack-agent.ts
+Workflows relacionados:
+
+clickup-email-workflow.ts
+steps — passos reutilizáveis (fetch, save, enviar email/slack).
+Como executar (rápido):
+
+Instale dependências: pnpm install ou npm install.
+Ajuste as variáveis de ambiente em .env.
+Execute um exemplo de ferramenta (ex.: chamar o agente ClickUp):
+pnpm tsx src/mastra/tools/call-clickup-agent.ts (ou npx ts-node-esm src/mastra/tools/call-clickup-agent.ts).
+Variáveis de ambiente importantes: configure o arquivo .env com as chaves necessárias antes de executar:
+
+OPENAI_API_KEY
+CLICKUP_API_KEY, CLICKUP_TEAM_ID, CLICKUP_LIST_ID
+SLACK_BOT_TOKEN, SLACK_WORKSPACE_ID, SLACK_CHANNEL_ID
+SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM, REPORT_EMAIL_TO
