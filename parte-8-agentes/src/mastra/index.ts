@@ -9,10 +9,11 @@ import { slackMcpServer } from "./mcp/slack-server";
 import { opsOrchestratorAgent } from "./agents/ops-orchestrator-agent";
 import { emailAgent } from "./agents/email-agent";
 import { searchAgent } from "./agents/search-agent";
+import { whatsappAgent } from "./agents/whatsapp-twilio-agent";
 
 export const mastra: Mastra = new Mastra({
   agents: { weatherAgent, clickupAgent, slackAgent, clickupSlackGeneral, 
-    opsOrchestratorAgent, emailAgent, searchAgent },
+    opsOrchestratorAgent, emailAgent, searchAgent, whatsappAgent },
   storage: new LibSQLStore({
     id: "libsql-storage",
     url: "file:./storage.db",
