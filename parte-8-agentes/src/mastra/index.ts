@@ -10,14 +10,21 @@ import { opsOrchestratorAgent } from "./agents/ops-orchestrator-agent";
 import { emailAgent } from "./agents/email-agent";
 import { searchAgent } from "./agents/search-agent";
 import { whatsappAgent } from "./agents/whatsapp-twilio-agent";
+import { anestechPreopAgent } from "./agents/anestech-preop-agent";
+import { anestechIntentAgent } from "./agents/anestech-intent-agent";
+import { anestechPreWebhookRoute, downloadPdfRoute } from "./server/anestech-pre-twilio-route";
 
 export const mastra: Mastra = new Mastra({
   agents: { weatherAgent, clickupAgent, slackAgent, clickupSlackGeneral, 
-    opsOrchestratorAgent, emailAgent, searchAgent, whatsappAgent },
+    opsOrchestratorAgent, emailAgent, searchAgent, whatsappAgent, anestechPreopAgent, 
+    anestechIntentAgent },
   storage: new LibSQLStore({
     id: "libsql-storage",
     url: "file:./storage.db",
   }),
   workflows: { clickupToCsvWorkflow },
   mcpServers: { slackMcpServer },
+  server: {
+    apiRoutes: [anestechPreWebhookRoute, downloadPdfRoute],
+  },
 });
