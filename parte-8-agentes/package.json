@@ -25,6 +25,7 @@
     "@mastra/libsql": "^1.5.0",
     "@mastra/mcp": "^1.0.1",
     "@mastra/memory": "^1.4.0",
+    "@supabase/supabase-js": "^2.98.0",
     "dotenv": "^17.3.1",
     "nodemailer": "^8.0.1",
     "openai": "^6.25.0",
