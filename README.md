@@ -1,4 +1,4 @@
-# Princípios de Construção de Agentes de IA
+# A Nova Engenharia de Software com IA
 
 Este repositório contém exemplos práticos e projetos relacionados aos princípios fundamentais para construir agentes de inteligência artificial, baseados no livro de referência sobre o tema.
 
@@ -109,8 +109,8 @@ Este repositório contém exemplos práticos e projetos relacionados aos princí
 
 Cada pasta contém exemplos práticos e documentação específica sobre os tópicos abordados. Explore as pastas para ver implementações reais dos conceitos apresentados.
 
-
 ### PARTE 8: AGENTES (PARTE-8-AGENTES)
+
 Resumo: Esta parte reúne exemplos práticos de agentes (processos capazes de tomar decisões e chamar ferramentas) usados em projetos reais. Os exemplos demonstram como orquestrar chamadas a APIs, integrar com Slack/ClickUp, enviar emails e compor workflows usando o MCP e pequenas ferramentas locais.
 
 Arquivos chave:
