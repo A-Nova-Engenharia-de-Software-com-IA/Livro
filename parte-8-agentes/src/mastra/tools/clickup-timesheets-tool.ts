@@ -8,24 +8,32 @@ function toMs(dateIso: string) {
 export const clickupTimesheetsTool = createTool({
   id: "clickup-timesheets",
   description:
-    "Busca apontamentos de horas (time entries) no ClickUp em um intervalo e retorna totais por usuário (com nome) e por tarefa (com nome), com paginação.",
+    "Busca apontamentos de horas (time entries) no ClickUp para um usuário específico em um intervalo.",
+
   inputSchema: z.object({
+    assigneeName: z
+      .string()
+      .describe("Nome ou parte do nome do usuário no ClickUp"),
+
     startDate: z
       .string()
       .describe("Data ISO início, ex: 2026-02-10T00:00:00Z"),
+
     endDate: z
       .string()
       .describe("Data ISO fim, ex: 2026-02-16T23:59:59Z"),
   }),
+
   outputSchema: z.object({
     output: z.string(),
   }),
 
   execute: async (input) => {
-    const { startDate, endDate } = input;
+
+    const { assigneeName, startDate, endDate } = input;
 
     console.log(
-      `Executando clickup-timesheets com startDate=${startDate} e endDate=${endDate}`
+      `Executando clickup-timesheets user=${assigneeName} startDate=${startDate} endDate=${endDate}`
     );
 
     const token = process.env.CLICKUP_API_KEY;
@@ -38,6 +46,27 @@ export const clickupTimesheetsTool = createTool({
       };
     }
 
+    // resolve usuário
+    const users = await clickupListTeamUsers(teamId);
+    const matches = findUserMatches(users, assigneeName);
+
+    if (matches.length === 0) {
+      return {
+        output: `Não encontrei nenhum usuário que combine com "${assigneeName}".`,
+      };
+    }
+
+    if (matches.length > 1) {
+      const options = matches.slice(0, 10);
+      return {
+        output:
+          `Mais de um usuário encontrado para "${assigneeName}". Seja mais específico:\n` +
+          options.map((u) => `- ${u.name} (${u.id})`).join("\n"),
+      };
+    }
+
+    const assignee = matches[0];
+
     const startMs = toMs(startDate);
     const endMs = toMs(endDate);
 
@@ -47,7 +76,16 @@ export const clickupTimesheetsTool = createTool({
     let allEntries: any[] = [];
 
     while (page < MAX_PAGES) {
-      const url = `https://api.clickup.com/api/v2/team/${teamId}/time_entries?start_date=${startMs}&end_date=${endMs}&page=${page}&limit=${limit}&assignee=112089405,112077711,112049254,111967844,111959750,106110385,454784,105992523,105952383,100151579,100065012,99999045,54061055,120143581,50732270,99934217,99909576,94165109,94165107,94058613,87747709,14966117,93947772,93909451,93909448,88009220,102690500,87980292,87980289,87976964,87972451,87922063,87904020,87901291,82188467,30029281,82163947,82178082,152527986,152509150,82157115,82157998,81773135,82116153,82079133,82077307,82061385,82024434,82024432,89170947,82016900,82007575,48956840,90157245,78811517,81997685,82282992,81997684,81950826,81943637,81904231,44286011,61003609,60998633,60922821,54934235,49151002,49133911,49100402,49068847,49042439,49040556,49009468,48943029,43050834,18948554,18943675,18943676,18943338,18938221,18938222,18938195&include_task_tags=true&include_location_names=true`;
+
+      const url =
+        `https://api.clickup.com/api/v2/team/${teamId}/time_entries` +
+        `?start_date=${startMs}` +
+        `&end_date=${endMs}` +
+        `&assignee=${assignee.id}` +
+        `&page=${page}` +
+        `&limit=${limit}` +
+        `&include_task_tags=true` +
+        `&include_location_names=true`;
 
       console.log(`Buscando ClickUp time entries: ${url}`);
 
@@ -70,37 +108,24 @@ export const clickupTimesheetsTool = createTool({
 
       console.log(`Página ${page}: ${entries.length} registros`);
 
-      if (!entries.length) {
-        break;
-      }
+      if (!entries.length) break;
 
       allEntries.push(...entries);
 
-      if (entries.length < limit) {
-        break;
-      }
+      if (entries.length < limit) break;
 
       page++;
     }
 
-    // ---- Agregações ----
-
     type Acc = Record<string, number>;
-    const byUser: Acc = {};
+
     const byTask: Acc = {};
-    const userNames: Record<string, string> = {};
     const taskNames: Record<string, string> = {};
 
     for (const e of allEntries) {
-      const userId = String(e.user?.id ?? e.user_id ?? "unknown_user");
-      const username = e.user?.username ?? "Usuário desconhecido";
 
       const taskId = String(e.task?.id ?? e.task_id ?? "unknown_task");
       const taskName = e.task?.name ?? "Tarefa desconhecida";
-
-      if (!userNames[userId]) {
-        userNames[userId] = username;
-      }
 
       if (!taskNames[taskId]) {
         taskNames[taskId] = taskName;
@@ -108,19 +133,11 @@ export const clickupTimesheetsTool = createTool({
 
       const durationMs = Number(e.duration ?? 0);
 
-      byUser[userId] = (byUser[userId] ?? 0) + durationMs;
       byTask[taskId] = (byTask[taskId] ?? 0) + durationMs;
     }
 
-    const msToHours = (ms: number) => (ms / 1000 / 60 / 60).toFixed(2);
-
-    const userLines = Object.entries(byUser)
-      .sort((a, b) => b[1] - a[1])
-      .map(([userId, ms]) => {
-        const name = userNames[userId] ?? userId;
-        return `- ${name} (${userId}): ${msToHours(ms)}h`;
-      })
-      .join("\n");
+    const msToHours = (ms: number) =>
+      (ms / 1000 / 60 / 60).toFixed(2);
 
     const taskLines = Object.entries(byTask)
       .sort((a, b) => b[1] - a[1])
@@ -133,9 +150,9 @@ export const clickupTimesheetsTool = createTool({
 
     return {
       output:
-        `Apontamentos (${startDate} → ${endDate})\n` +
+        `Apontamentos de ${assignee.name}\n` +
+        `Período: ${startDate} → ${endDate}\n` +
         `Total de registros: ${allEntries.length}\n\n` +
-        `Totais por usuário:\n${userLines || "- (sem dados)"}\n\n` +
         `Top tarefas (até 20):\n${taskLines || "- (sem dados)"}`,
     };
   },
@@ -145,6 +162,7 @@ const CLICKUP_API_BASE = "https://api.clickup.com/api/v2";
 
 async function clickupFetch(path: string, init?: RequestInit) {
   const token = process.env.CLICKUP_API_KEY;
+
   if (!token) {
     return { ok: false, status: 0, error: "Falta CLICKUP_API_KEY no .env" } as any;
   }
@@ -152,15 +170,18 @@ async function clickupFetch(path: string, init?: RequestInit) {
   const res = await fetch(`${CLICKUP_API_BASE}${path}`, {
     ...init,
     headers: {
-      Authorization: token, // ClickUp usa Authorization: <token>
+      Authorization: token,
       "Content-Type": "application/json; charset=utf-8",
       ...(init?.headers || {}),
     },
   });
 
   const data = await res.json().catch(() => ({ ok: false, err: "invalid_json" }));
+
   return { status: res.status, ...data } as any;
 }
+
+/* restante do seu script permanece igual */
 
 /**
  * Tool: Listar usuários/membros do time/workspace no ClickUp
@@ -512,6 +533,201 @@ export const clickupAddTimeEntryTool = createTool({
         `Data: ${input.date}\n` +
         `Tempo: ${input.hours}h`,
       timeEntryId: timeEntryId || undefined,
+    };
+  },
+});
+
+export const clickupListProjectsTool = createTool({
+  id: "clickup-list-projects",
+  description:
+    "Lista os projetos (lists) existentes nos spaces do ClickUp.",
+
+  inputSchema: z.object({}),
+
+  outputSchema: z.object({
+    output: z.string(),
+    projects: z
+      .array(
+        z.object({
+          id: z.string(),
+          name: z.string(),
+          space: z.string(),
+          folder: z.string().optional(),
+        })
+      )
+      .optional(),
+  }),
+
+  execute: async () => {
+
+    const teamId = process.env.CLICKUP_TEAM_ID;
+
+    if (!teamId) {
+      return {
+        output: "Falta CLICKUP_TEAM_ID no .env",
+      };
+    }
+
+    const spacesRes = await clickupFetch(`/team/${teamId}/space`);
+
+    const spaces = spacesRes?.spaces ?? [];
+
+    const projects: any[] = [];
+
+    for (const space of spaces) {
+
+      // folders
+      const foldersRes = await clickupFetch(`/space/${space.id}/folder`);
+
+      const folders = foldersRes?.folders ?? [];
+
+      for (const folder of folders) {
+
+        const listsRes = await clickupFetch(`/folder/${folder.id}/list`);
+
+        const lists = listsRes?.lists ?? [];
+
+        for (const list of lists) {
+          projects.push({
+            id: String(list.id),      // ← IMPORTANTE
+            name: list.name,
+            space: space.name,
+            folder: folder.name,
+          });
+        }
+      }
+
+      // lists diretas no space (sem folder)
+      const listsRes = await clickupFetch(`/space/${space.id}/list`);
+
+      const lists = listsRes?.lists ?? [];
+
+      for (const list of lists) {
+        projects.push({
+          id: String(list.id),      // ← IMPORTANTE
+          name: list.name,
+          space: space.name,
+        });
+      }
+    }
+
+    const lines = projects
+      .map((p) =>
+        `- ${p.name} (${p.id}) — space: ${p.space}${p.folder ? ` / folder: ${p.folder}` : ""}`
+      )
+      .join("\n");
+
+    return {
+      output: lines,
+      projects,
+    };
+  },
+});
+
+export const clickupProjectHoursTool = createTool({
+  id: "clickup-project-hours",
+  description:
+    "Calcula o total de horas trabalhadas por projeto (ClickUp list) usando os apontamentos de tempo.",
+
+  inputSchema: z.object({
+    startDate: z.string().describe("Data inicial ISO"),
+    endDate: z.string().describe("Data final ISO"),
+  }),
+
+  outputSchema: z.object({
+    output: z.string(),
+  }),
+
+  execute: async (input) => {
+
+    const { startDate, endDate } = input;
+
+    const teamId = process.env.CLICKUP_TEAM_ID;
+    const token = process.env.CLICKUP_API_KEY;
+
+    if (!teamId || !token) {
+      return {
+        output: "Faltam variáveis CLICKUP_TEAM_ID ou CLICKUP_API_KEY no .env",
+      };
+    }
+
+    const startMs = new Date(startDate).getTime();
+    const endMs = new Date(endDate).getTime();
+
+    let page = 0;
+    const limit = 100;
+    const MAX_PAGES = 50;
+
+    const entries: any[] = [];
+
+    while (page < MAX_PAGES) {
+
+      const url =
+        `https://api.clickup.com/api/v2/team/${teamId}/time_entries` +
+        `?start_date=${startMs}` +
+        `&end_date=${endMs}` +
+        `&page=${page}` +
+        `&limit=${limit}` +
+        `&include_task_tags=true`;
+
+      const res = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!res.ok) {
+        const text = await res.text();
+        return {
+          output: `Erro ClickUp API: ${res.status} ${text}`,
+        };
+      }
+
+      const data = await res.json();
+      const pageEntries = data.data ?? data.time_entries ?? [];
+
+      if (!pageEntries.length) break;
+
+      entries.push(...pageEntries);
+
+      if (pageEntries.length < limit) break;
+
+      page++;
+    }
+
+    const projectHours: Record<string, number> = {};
+    const projectNames: Record<string, string> = {};
+
+    for (const e of entries) {
+
+      const listId = String(e.task?.list?.id ?? "unknown_project");
+      const listName = e.task?.list?.name ?? "Projeto desconhecido";
+
+      const duration = Number(e.duration ?? 0);
+
+      if (!projectNames[listId]) {
+        projectNames[listId] = listName;
+      }
+
+      projectHours[listId] = (projectHours[listId] ?? 0) + duration;
+    }
+
+    const msToHours = (ms: number) =>
+      (ms / 1000 / 60 / 60).toFixed(2);
+
+    const lines = Object.entries(projectHours)
+      .sort((a, b) => b[1] - a[1])
+      .map(([id, ms]) => {
+        const name = projectNames[id] ?? id;
+        return `- ${name}: ${msToHours(ms)}h`;
+      })
+      .join("\n");
+
+    return {
+      output:
+        `Horas por projeto (${startDate} → ${endDate})\n\n` +
+        `${lines || "Nenhum apontamento encontrado."}`,
     };
   },
 });
