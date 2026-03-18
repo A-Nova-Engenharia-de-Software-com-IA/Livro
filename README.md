@@ -1,6 +1,14 @@
 # A Nova Engenharia de Software com IA
 
-Este repositório contém exemplos práticos e projetos relacionados aos princípios fundamentais para construir agentes de inteligência artificial, baseados no livro de referência sobre o tema.
+> **Autores:** Rafael de Faria Scheidt ("Foka") e Johnatan Ricardo Martins — [softwarewith.io](https://softwarewith.io/)
+
+Este repositório contém os exemplos práticos do livro **"A Nova Engenharia de Software com IA"** — um guia técnico e estratégico sobre como projetar e operar sistemas inteligentes baseados em agentes de IA, desde os fundamentos de prompting até arquiteturas generativas de nível produtivo.
+
+A chegada dos LLMs e da IA orientada por agentes rompeu o padrão tradicional de desenvolvimento de software. Não falamos mais de softwares que apenas executam comandos — mas de sistemas capazes de interpretar intenção, planejar, tomar decisões, usar ferramentas externas e se adaptar em tempo real. O papel do engenheiro muda: menos execução manual e mais arquitetura, governança, integração, observabilidade e qualidade.
+
+Este livro nasce dessa virada e de uma experiência prática em projetos críticos de saúde, tecnologia e transformação digital. Se você é desenvolvedor, gestor, líder técnico, empreendedor ou estrategista, este livro foi escrito para ajudar você a sair da teoria e começar a usar a inteligência artificial como uma força concreta de transformação.
+
+---
 
 ## 📚 Conteúdo
 
@@ -8,139 +16,194 @@ Este repositório contém exemplos práticos e projetos relacionados aos princí
 
 - **Uma Breve História das LLMs**
 - **Escolhendo um Provedor e um Modelo**
-- **Como Escrever Bons Prompts**
-  - **[Exemplo: um ótimo prompt](./parte-1/prompts/README.md)**
+  - Hosted vs open-source
+  - Tamanho do modelo: acurácia vs custo/latência
+  - Tamanho da janela de contexto e modelos de raciocínio
+- **Como Escrever Excelentes Prompts**
+  - Técnicas básicas de prompt
+  - System prompt e truques de formatação
+  - ✅ **[Exemplo: um excelente prompt](./parte-1/prompts/README.md)**
 
 ### Parte 2: Construindo um Agente
 
 - **Agentes**
+  - Níveis de autonomia e definição de papel
   - ✅ **[Exemplo de Código](./parte-2/agentes/)**
 - **Roteamento de Modelos e Saída Estruturada**
+  - Estratégias de roteamento e saída estruturada
   - ✅ **[Exemplo de Código](./parte-2/roteamento-de-modelos/)**
-- **Uso de Ferramentas (Tool Calling)**
-  - ✅ **[Exemplo de código](./parte-2/chamada-de-ferramentas/)**
+- **Chamada de Ferramentas (Tool Calling)**
+  - Boas práticas
+  - ✅ **[Exemplo de Código](./parte-2/chamada-de-ferramentas/)**
 - **Memória do Agente**
-  - ✅ **[Exemplo de código](./parte-2/memoria-do-agente/)**
+  - Hierarquia de memória e processadores
+  - Estratégias de controle e recuperação
+  - ✅ **[Exemplo de Código](./parte-2/memoria-do-agente/)**
 - **Agentes Dinâmicos**
-  - ✅ **[Exemplo de código](./parte-2/agentes-dinamicos/)**
+  - Agente estático vs dinâmico, principais tipos e aplicações
+  - ✅ **[Exemplo de Código](./parte-2/agentes-dinamicos/)**
 - **Middleware de Agente**
-  - Guardrails
-  - Autenticação e autorização do agente
-  - ✅ **[Exemplo de código](./parte-2/middleware-de-agente/)**
+  - Guardrails, autenticação e autorização do agente
+  - ✅ **[Exemplo de Código](./parte-2/middleware-de-agente/)**
 
 ### Parte 3: Ferramentas (Tools) e MCP
 
-- **Principais Ferramentas de Terceiros**
-  - Web scraping & uso de computador
-  - Integrações de terceiros
+- **Ferramentas de Terceiros**
+  - Web scraping, uso de computador e integrações de terceiros
+  - Boas práticas para integrar ferramentas de terceiros em agentes
 - **Model Context Protocol (MCP): Conectando Agentes e Ferramentas**
-  - O que é MCP
-  - Primitivas do MCP
-  - O ecossistema MCP
-  - Quando usar MCP
-  - Construindo um Servidor e Cliente MCP
-  - O futuro do MCP
-  - ✅ **[Exemplo de código](./parte-3/mcp/)**
+  - Arquitetura cliente-servidor
+  - Componentes principais e ecossistema MCP
+    - ✅ **[Componentes Principais](./parte-3/mcp/componentes-principais/)**
+  - Quando usar MCP, diferenças entre Tool Calling e MCP
+- ✅ **[Exemplo Prático](./parte-3/mcp/exemplo-pratico/)**
 
-### Parte 4: Workflow Baseados em Grafos
+### Parte 4: Workflows Baseados em Grafos
 
 - **Workflows**
-- **Ramificação, Encadeamento, Mesclagem e Condições**
-  - Ramificação
-  - Encadeamento (Chaining)
-  - Mesclagem (Merging)
+  - ✅ **[Exemplo de Código](./parte-4/workflows/)**
+- **Ramificação, Encadeamento, Convergência e Condições**
+  - ✅ **[Ramificação (Branching)](./parte-4/workflows/branching/)**
+  - ✅ **[Encadeamento (Chaining)](./parte-4/workflows/chaining/)**
+  - ✅ **[Convergência (Merging)](./parte-4/workflows/merging/)**
   - Condições
-  - Boas práticas e notas
-  - ✅ **[Exemplo de código](./parte-4/workflows/)**
 - **Suspender e Retomar**
-  - ✅ **[Exemplo de código](./parte-4/suspender-e-continuar/)**
-- **Atualizações via Streaming**
-  - Como fazer streaming dentro de funções
-  - Por que streaming importa
-  - Como construir
-  - ✅ **[Exemplo de código](./parte-4/streaming/)**
-- **Observabilidade e Tracing**
-  - Observabilidade
-  - Tracing
-  - Evals
-  - Notas finais sobre observabilidade e tracing
+  - O que é suspender e continuar, benefícios e quando usar
+  - ✅ **[Exemplo de Código](./parte-4/suspender-e-continuar/)**
+- **Atualizações em Tempo Real (Streaming)**
+  - Streaming em ferramentas e benefícios do streaming
+  - ✅ **[Exemplo de Código](./parte-4/streaming/)**
+- **Observabilidade e Rastreamento**
+  - Observabilidade, tracing, evals e notas finais
 
 ### Parte 5: Retrieval-Augmented Generation (RAG)
 
 - **RAG**
-- **Escolhendo um Banco de Vetores**
+  - Como funciona e quando usar
+- **Escolhendo um Banco de Dados Vetorial**
+  - O cenário atual do mercado e recomendação prática
 - **Configurando seu Pipeline RAG**
-  - Chunking
-  - Embedding
-  - Upsert
-  - Indexação
-  - Query
-  - Reranking
-  - Exemplo de Código
+  - Chunking, Embedding, Upsert, Indexação, Query, Reranking
 - **Alternativas ao RAG**
-  - RAG com Agentes (Agentic RAG)
-  - Geração Aumentada por Raciocínio (ReAG)
+  - RAG orientado a Agentes (Agentic RAG)
+  - Reasoning-Augmented Generation (ReAG)
   - Carregamento de Contexto Completo
-- ✅ **[Exemplo de código](./parte-5/rag/)**
+- ✅ **[Exemplo de Código](./parte-5/rag/)**
 
 ### Parte 6: Sistemas Multiagentes
 
 - **Multi-Agente**
-  - ✅ **[Exemplo de código](./parte-6/multi-agentes/)**
-- **Supervisor de Agentes**
+  - Papéis diferentes, competências diferentes
+  - O paralelo com o mundo corporativo
+  - ✅ **[Exemplo de Código](./parte-6/multi-agentes/)**
+- **Agente Supervisor**
+  - Fluxo de delegação e consolidação de respostas
 - **Fluxo de Controle**
-- **Workflows como Ferramentas**
+- **Fluxo de Trabalho com Ferramentas**
+  - Quando uma única chamada não é suficiente
 - **Combinando os Padrões**
-- **Padrões de Multi-Agente**
-  - Como o A2A funciona
+  - O papel estratégico do agente de planejamento
+- **Padrões de Multi-Agente (A2A)**
+  - Como o protocolo A2A funciona
   - A2A vs. MCP
 
 ### Parte 7: Evals
 
-- **Evals**
-- **Evals Textuais**
-  - Acurácia e confiabilidade
-  - Entendimento de contexto
-  - Saída
-  - Exemplo de Código
-- ✅ **[Exemplo de código](./parte-7/avaliacao-textual/)**
+- **Evals: Como Medir a Qualidade**
+- **Avaliação Textual**
+  - Precisão e confiabilidade da resposta
+  - Uso correto do contexto
+  - Avaliação da forma da resposta (Output Quality)
+- ✅ **[Exemplo de Código](./parte-7/avaliacao-textual/)**
+
+### Parte 8: Sistemas Generativos
+
+- **A Nova Era de Sistemas Inteligentes**
+  - Do software pré-definido ao software generativo
+  - A lógica muda: o sistema deixa de ser um produto e se torna um organismo vivo
+- **A Importância dos Sistemas Generativos**
+  - Startups, empresas de médio e grande porte
+  - O insight que pouca gente fala (mas muda tudo): 80% do backlog nunca é entregue
+- **Projetando Sistemas Inteligentes**
+  - Nada é fixo — tudo é metadado
+  - Engines de regras, renderizadores universais, versionamento automático de estrutura
+  - O futuro do design de software: sistemas que se moldam ao usuário
+
+### Parte 9: Construindo Agentes — Exemplo Prático
+
+Um sistema completo de agentes inteligentes construído com **[Mastra](https://mastra.ai/)**, integrando diversas plataformas e ferramentas para automatização e orquestração de tarefas reais.
+
+- **Um Framework Para Construção de Agentes com Mastra.AI**
+  - Workflows baseados em grafos, human-in-the-loop, gestão de contexto e memória
+- **Agentes no Mastra — Ambiente de Desenvolvimento**
+  - Mastra Studio: experimentação, observabilidade e rastreabilidade
+  - Visualização de workflows, teste isolado de ferramentas
+- **Conectando Seu Agente ao Mastra via MCP**
+  - Servidor MCP, cliente MCP e agente Mastra integrados
+
+**Agentes disponíveis no exemplo:**
+
+| Agente                        | Descrição                                              |
+| ----------------------------- | ------------------------------------------------------ |
+| Intent Classifier             | Classifica intenções do usuário em contexto médico     |
+| Pré-operatório (Áudio → JSON) | Converte relatos transcritos em JSON estruturado       |
+| ClickUp Assistant             | Gerencia apontamentos de horas e tarefas no ClickUp    |
+| Email Assistant               | Redige e envia e-mails via SMTP com confirmação prévia |
+| Search Agent                  | Realiza buscas na web para informações atualizadas     |
+| Slack Assistant               | Envia mensagens e gerencia canais/usuários no Slack    |
+| Weather Agent                 | Fornece informações de clima para localidades          |
+| WhatsApp Assistant            | Envia mensagens via WhatsApp usando Twilio             |
+| Operations Orchestrator       | Orquestra fluxos multi-sistema entre agentes           |
+| Operations Assistant          | Integra Slack e ClickUp para relatórios operacionais   |
+
+- ✅ **[Exemplo de Código](./parte-9/)**
+
+---
 
 ## 🚀 Começando
 
 Cada pasta contém exemplos práticos e documentação específica sobre os tópicos abordados. Explore as pastas para ver implementações reais dos conceitos apresentados.
 
-### PARTE 8: AGENTES (PARTE-8-AGENTES)
+### Pré-requisitos
 
-Resumo: Esta parte reúne exemplos práticos de agentes (processos capazes de tomar decisões e chamar ferramentas) usados em projetos reais. Os exemplos demonstram como orquestrar chamadas a APIs, integrar com Slack/ClickUp, enviar emails e compor workflows usando o MCP e pequenas ferramentas locais.
+- Python 3.10+ (para exemplos das Partes 1–7)
+- Node.js 18+ e npm/pnpm (para a Parte 9 com Mastra)
+- Chave de API da OpenAI (`OPENAI_API_KEY`)
 
-Arquivos chave:
+### Estrutura do Repositório
 
-clickup-agent.ts — agente que consulta e processa dados do ClickUp.
-clickup-slack-general.ts — conecta ClickUp com Slack.
-email-agent.ts — agente para envio de relatórios por email.
-ops-orchestrator-agent.ts — orquestrador de operações entre agentes.
-search-agent.ts — agente de busca e indexação.
-slack-agent.ts — integração e envio de mensagens no Slack.
-weather-agent.ts — consulta APIs de clima.
-Ferramentas de exemplo (callers):
+```
+AI/
+├── parte-1/           # Prompting e orientação de LLMs
+├── parte-2/           # Agentes, ferramentas, memória e middleware
+├── parte-3/           # MCP e ferramentas de terceiros
+├── parte-4/           # Workflows, streaming e observabilidade
+├── parte-5/           # RAG e pipelines de conhecimento
+├── parte-6/           # Sistemas multiagentes
+├── parte-7/           # Evals e avaliação de qualidade
+└── parte-9/           # Exemplo prático completo com Mastra (Parte 9 do livro)
+```
 
-call-clickup-agent.ts
-call-email-agent.ts
-call-search-agent.ts
-call-slack-agent.ts
-Workflows relacionados:
+Consulte o `README.md` de cada pasta para instruções detalhadas de execução.
 
-clickup-email-workflow.ts
-steps — passos reutilizáveis (fetch, save, enviar email/slack).
-Como executar (rápido):
+---
 
-Instale dependências: pnpm install ou npm install.
-Ajuste as variáveis de ambiente em .env.
-Execute um exemplo de ferramenta (ex.: chamar o agente ClickUp):
-pnpm tsx src/mastra/tools/call-clickup-agent.ts (ou npx ts-node-esm src/mastra/tools/call-clickup-agent.ts).
-Variáveis de ambiente importantes: configure o arquivo .env com as chaves necessárias antes de executar:
+## Conclusão
 
-OPENAI_API_KEY
-CLICKUP_API_KEY, CLICKUP_TEAM_ID, CLICKUP_LIST_ID
-SLACK_BOT_TOKEN, SLACK_WORKSPACE_ID, SLACK_CHANNEL_ID
-SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM, REPORT_EMAIL_TO
+O futuro do desenvolvimento de software não será liderado por quem apenas consome IA — mas por quem **constrói, orquestra e integra agentes inteligentes** com segurança, escala e governança.
+
+Este repositório é o complemento prático desse aprendizado. Cada exemplo foi construído para ser executado, explorado e adaptado à sua realidade. Da escrita de um bom prompt à arquitetura de sistemas generativos capazes de se auto-modificar — cada passo aqui representa uma habilidade concreta para a nova engenharia de software.
+
+Bons estudos e boas construções.
+
+---
+
+## 👤 Autores
+
+**Rafael de Faria Scheidt ("Foka")**
+
+**Johnatan Ricardo Martins**
+
+---
+
+> Saiba mais em [softwarewith.io](https://softwarewith.io/)

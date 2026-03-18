@@ -19,3 +19,6 @@ ENV/
 *.swo
 *~
 
+
+**/.DS_Store
+links-qrcodes/
