@@ -5,6 +5,7 @@ e usar os resultados para responder perguntas com um LLM (RAG completo).
 """
 
 import os
+import sys
 from pathlib import Path
 
 import chromadb
@@ -233,6 +234,45 @@ def run_search_examples():
         input("\n⏸️  Pressione ENTER para o próximo exemplo...")
 
 
+def interactive_mode():
+    """Modo interativo: permite ao usuário digitar perguntas livremente."""
+    count = collection.count()
+    if count == 0:
+        print("⚠️ Base vetorial vazia! Execute primeiro: python indexer.py")
+        return
+
+    print("\n" + "=" * 70)
+    print("🏥 MODO INTERATIVO - BASE MÉDICA")
+    print(f"📊 Total de documentos indexados: {count}")
+    print("💡 Digite 'sair' ou pressione Ctrl+C para encerrar")
+    print("=" * 70)
+
+    while True:
+        try:
+            print()
+            question = input("📝 Sua pergunta: ").strip()
+            if not question or question.lower() in ("sair", "exit", "q"):
+                print("\n👋 Encerrando modo interativo.")
+                break
+
+            resposta, results = rag_query(question, n_context=3)
+
+            print("\n📚 Documentos Encontrados:")
+            print(format_search_results(results))
+
+            print("\n🤖 Resposta do Assistente (RAG):")
+            print("-" * 50)
+            print(resposta)
+            print("-" * 50)
+
+        except KeyboardInterrupt:
+            print("\n\n👋 Encerrando modo interativo.")
+            break
+
+
 if __name__ == "__main__":
-    run_search_examples()
+    if "--interactive" in sys.argv:
+        interactive_mode()
+    else:
+        run_search_examples()
 

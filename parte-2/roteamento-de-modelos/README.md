@@ -45,9 +45,9 @@ O classificador usa duas técnicas:
    - Complexo: "diagnóstico", "analise detalhadamente", "sintomas"
 
 2. **Contagem de tokens**: Se não houver palavra-chave
-   - < 20 palavras → Simples
-   - 20-100 palavras → Médio
-   - > 100 palavras → Complexo
+   - < 15 palavras → Simples
+   - 15-79 palavras → Médio
+   - ≥ 80 palavras → Complexo
 
 ## Como Executar
 

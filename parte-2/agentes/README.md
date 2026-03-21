@@ -11,7 +11,28 @@ O agente é capaz de:
 - ✅ **Agendar consultas** (novas consultas e retornos)
 - ✅ **Consultar exames** e seus resultados
 - ✅ **Mostrar agenda disponível** dos médicos
-- ✅ **Manter conversação natural** usando OpenAI GPT
+- ✅ **Manter conversação natural** usando OpenAI GPT com histórico de sessão
+- ⚠️ **Cadastro de novo paciente**: o agente responde como se cadastrasse, mas **não persiste os dados**. Em produção, implemente a persistência no banco.
+
+## 🤖 Nível de Autonomia
+
+Este agente opera em **nível médio**, conforme classificação do livro:
+
+- Possui **loop de interação** — pensa → age → observa → responde
+- Mantém **memória de sessão** (últimas 10 mensagens em RAM)
+- **Chama a IA sozinho** para identificar o paciente e responder
+- **Repete** o pedido de identificação em caso de falha
+- **Não persiste** estado entre execuções (RAM only)
+
+## 📋 Responsabilidades do Agente
+
+Definidas no system prompt, seguindo as boas práticas do livro:
+
+1. Gerenciar agendamentos com **precisão e confirmação clara**
+2. Ser **proativo** no fluxo de retorno quando o paciente tiver exame pronto
+3. Trabalhar **somente com dados reais** fornecidos pelo sistema
+4. **Identificar o paciente** antes de qualquer atendimento
+5. Garantir a **privacidade e segurança** dos dados do paciente
 
 ## 🗂️ Estrutura do Projeto
 
@@ -44,12 +65,6 @@ AI/                       # Raiz do projeto
 ```bash
 cd parte-2/agentes
 pip install -r requirements.txt
-```
-
-Ou usando Python 3.10 especificamente:
-
-```bash
-python -m pip install -r requirements.txt
 ```
 
 ### Passo 2: Configurar API Key da OpenAI
@@ -147,20 +162,32 @@ A classe principal que gerencia toda a lógica do agente:
 - **`processar_mensagem()`**: Processa mensagem usando OpenAI
 - **`_preparar_contexto_sistema()`**: Prepara contexto para a IA
 
-### Módulo de Constantes
+### Decisões de Design
 
-O arquivo `contants/system_prompts.py` contém:
+| Decisão | Valor | Motivo |
+|---|---|---|
+| Temperatura na identificação | `0.7` | Mais flexibilidade para interpretar variações de nome/CPF |
+| Temperatura após identificação | `0.3` | Mais precisão e consistência no atendimento |
+| Limite de histórico | últimas `10` mensagens | Evita estouro de contexto sem perder o fio da conversa |
+| Data atual no contexto | injetada a cada chamada | Permite ao modelo validar datas de agendamento corretamente |
 
-- **`SYSTEM_PROMPT`**: Prompt do sistema com instruções detalhadas para o comportamento do agente
-- Define regras de identificação de pacientes
-- Instruções sobre agendamento e exames
-- Diretrizes para proatividade no atendimento
+### Módulo de Constantes — 5 Elementos do System Prompt
+
+O arquivo `contants/system_prompts.py` cobre os 5 elementos que o livro define como essenciais:
+
+| Elemento | Implementação |
+|---|---|
+| **Quem sou?** | "Você é um assistente virtual de uma clínica médica" |
+| **Qual meu único objetivo?** | Agendamentos, consulta de exames, disponibilidade de médicos |
+| **Quais são meus limites?** | Nunca inventar horários; nunca revelar CPF sem validação completa; só dados reais |
+| **Como me comunicar?** | Educado, profissional, usar emojis quando apropriado |
+| **Quando pedir ajuda humana?** | Urgência médica → SAMU; insatisfação após 2 tentativas → recepção; administrativo → equipe administrativa |
 
 ### Banco de Dados (JSON)
 
 Os dados são armazenados em arquivos JSON na pasta `DB/`:
 
-- **medicos.json**: Lista de médicos com suas especialidades e agendas
+- **medicos.json**: Lista de médicos com especialidades e agendas (datas futuras)
 - **pacientes.json**: Dados dos pacientes e histórico de consultas
 - **exames.json**: Exames solicitados e seus resultados
 
@@ -223,9 +250,9 @@ Verifique sua conexão com a internet e se sua API key é válida.
    (Cardiologia). Aqui estão os horários disponíveis para novas consultas:
 
 📅 Agenda disponível - Dr. Carlos Silva (Cardiologia):
-  • 2024-12-20: 09:00, 10:00, 14:00, 15:00
-  • 2024-12-21: 09:00, 11:00, 14:00, 16:00
-  • 2024-12-23: 08:00, 10:00, 13:00, 15:00
+  • 2026-04-07: 09:00, 10:00, 14:00, 15:00
+  • 2026-04-08: 09:00, 11:00, 14:00, 16:00
+  • 2026-04-10: 08:00, 10:00, 13:00, 15:00
 
 👤 Você: Quais são meus exames?
 

@@ -48,7 +48,6 @@ class ShortTermMemory:
 
 # Memória de longo prazo - dados persistentes
 class LongTermMemory:
-    - add_interaction()         # Adiciona interação
     - add_fact()                # Adiciona fato sobre usuário
     - update_preferences()      # Atualiza preferências
     - prune_old_data()          # Remove dados antigos
@@ -102,7 +101,7 @@ MAX_MEMORY_AGE_DAYS = 180   # Idade máxima das memórias
 
 ### Processamento Automático
 
-- **Compressão**: Quando há mais de 20 mensagens, cria resumo automático
+- **Compressão**: Quando há mais de N mensagens, cria resumo automático (`SUMMARY_THRESHOLD = 5` neste exemplo para facilitar testes — ajuste para 20+ em produção)
 - **Filtragem**: Só injeta memórias com score ≥ 0.85
 - **Poda**: Remove memórias com mais de 180 dias
 - **Priorização**: Ordena por relevância semântica
@@ -214,7 +213,7 @@ Quer que eu continue explicando sobre async/await?
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                         LLM (GPT-4)                         │
+│                      LLM (gpt-4o-mini)                      │
 │            System Prompt + Memória + Mensagem               │
 └─────────────────────────────────────────────────────────────┘
                               │

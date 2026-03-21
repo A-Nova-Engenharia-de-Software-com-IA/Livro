@@ -15,6 +15,7 @@ consulta de exames, etc.
 
 import json
 import os
+import unicodedata
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -41,6 +42,10 @@ client = OpenAI()
 
 # Caminho para os arquivos de banco de dados
 DB_PATH = os.path.join(os.path.dirname(__file__), "DB")
+
+def normalizar(texto: str) -> str:
+    """Remove acentos e converte para minúsculas para comparação."""
+    return unicodedata.normalize("NFD", texto).encode("ascii", "ignore").decode("utf-8").lower().strip()
 
 class AgenteClinica:
     """
@@ -148,11 +153,8 @@ class AgenteClinica:
         paciente = self.buscar_paciente_por_cpf(cpf)
 
         if paciente:
-            # Compara nomes (case-insensitive, sem acentos)
-            nome_paciente = paciente["nome"].lower().strip()
-            nome_busca = nome.lower().strip()
-            
-            if nome_paciente == nome_busca:
+            # Compara nomes ignorando acentos, maiúsculas e espaços extras
+            if normalizar(paciente["nome"]) == normalizar(nome):
                 return paciente
         
         return None
@@ -261,7 +263,8 @@ class AgenteClinica:
     # Preparar contexto do sistema
     def _preparar_contexto_sistema(self) -> str:
         """Prepara contexto do sistema para a IA."""
-        contexto = SYSTEM_PROMPT
+        data_atual = datetime.now().strftime("%d/%m/%Y %H:%M")
+        contexto = f"DATA E HORA ATUAL DO SISTEMA: {data_atual}\n\n" + SYSTEM_PROMPT
 
         if self.paciente_atual:
             contexto += f"\n\n{'='*60}\n"
@@ -361,7 +364,7 @@ def main():
             
             # Tenta identificar paciente se ainda não identificado
             if not agente.paciente_atual:
-                print('buscando paciente...')
+                print("🔍 Buscando paciente...")
                 if agente.identificar_paciente(mensagem):
                     print(f"\n✅ Olá, {agente.paciente_atual['nome']}! Identifiquei você no sistema.")
                     print("   Como posso ajudá-lo hoje? (consulta, retorno, exame)\n")

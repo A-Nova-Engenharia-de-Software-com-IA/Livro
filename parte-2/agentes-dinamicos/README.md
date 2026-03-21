@@ -1,13 +1,16 @@
 # 🤖 Agente Dinâmico Simples
 
+> **Exemplo introdutório** — demonstra o conceito central de agentes dinâmicos: adaptar o comportamento em runtime sem alterar o código. Para aplicações reais, expanda com ferramentas dinâmicas, memória persistente e múltiplos contextos.
+
 Agente que pergunta seu plano (gratis/pago) e adapta as respostas baseado nisso usando OpenAI.
 
 ## Por que Agentes Dinâmicos?
 
-- **Adaptação contínua**: O agente modifica seu comportamento baseado no plano do usuário
-- **Personalização**: Aprende se o usuário tem plano gratis ou pago
+- **Adaptação em runtime**: O agente modifica seu comportamento baseado no plano do usuário a cada chamada
+- **Personalização**: Detecta o plano do usuário e mantém esse contexto durante a sessão
 - **Instruções dinâmicas**: O system prompt muda baseado no plano
-- **Integração com LLM**: Usa OpenAI para respostas gerais, mas com instruções dinâmicas
+- **Histórico de conversa**: Mantém o contexto de toda a sessão atual em memória (RAM)
+- **Integração com LLM**: Usa OpenAI com histórico acumulado para respostas coerentes
 
 ## Estrutura do Projeto
 
@@ -20,9 +23,9 @@ agentes-dinamicos/
 
 ## Aprendizado Dinâmico
 
-- **Plano do usuário**: Aprende se é gratis ou pago baseado na primeira resposta
-- **Instruções dinâmicas**: System prompt muda entre "breve" e "detalhado"
-- **Estado persistente**: Mantém o plano durante toda a conversa
+- **Plano do usuário**: Detecta se é gratis ou pago baseado na primeira resposta e mantém durante a sessão
+- **Instruções dinâmicas**: System prompt muda entre "breve" e "detalhado" a cada chamada
+- **Estado em sessão**: O plano e o histórico ficam em RAM — não persistem entre execuções do processo
 
 ## Diagrama de Fluxo
 
@@ -57,9 +60,9 @@ agentes-dinamicos/
 ┌────────────────────────────────────────────────────────┐
 │                   PROCESSAMENTO FINAL                  │
 │                    ┌──────────────┐                    │
-│                    │ OpenAI?      │                    │
-│                    │ → API call   │                    │
-│                    │              │                    │
+│                    │ OpenAI API   │                    │
+│                    │ system +     │                    │
+│                    │ histórico    │                    │
 │                    └──────────────┘                    │
 └────────────────────────────────────────────────────────┘
                               │
@@ -139,8 +142,9 @@ else:
 
 ## Conceitos Demonstrados
 
-- ✅ **Agente dinâmico**: Aprende o plano do usuário e adapta comportamento
-- ✅ **Instruções dinâmicas**: System prompt muda baseado no plano
+- ✅ **Agente dinâmico**: Detecta o plano do usuário e adapta o comportamento em runtime
+- ✅ **Instruções dinâmicas**: System prompt muda a cada chamada baseado no plano
 - ✅ **Personalização**: Respostas diferentes para planos diferentes
-- ✅ **Integração OpenAI**: Usa GPT-4o-mini com contexto adaptado
-- ✅ **Estado persistente**: Lembra o plano durante a conversa
+- ✅ **Histórico de conversa**: Acumula o contexto da sessão para respostas coerentes
+- ✅ **Integração OpenAI**: Usa GPT-4o-mini com system prompt + histórico
+- ✅ **Tratamento de erro**: try/except na chamada de API — falhas não quebram o loop

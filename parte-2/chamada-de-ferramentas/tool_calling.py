@@ -42,11 +42,22 @@ PRODUTOS_DB = {
     "P004": {"nome": "Monitor 27 polegadas", "preco": 1800.00, "estoque": 8},
 }
 
-def buscar_produto(produto_id: str) -> dict:
-    """Busca informações de um produto pelo ID."""
-    if produto_id in PRODUTOS_DB:
-        return {"sucesso": True, "produto": PRODUTOS_DB[produto_id]}
-    return {"sucesso": False, "erro": f"Produto {produto_id} não encontrado"}
+def buscar_produto(produto_id: str, tipo_retorno: str = "completo") -> dict:
+    """Busca informações de um produto pelo ID.
+
+    tipo_retorno:
+      - 'basico'   → retorna apenas nome e preço
+      - 'completo' → retorna nome, preço e estoque
+    """
+    if produto_id not in PRODUTOS_DB:
+        return {"sucesso": False, "erro": f"Produto {produto_id} não encontrado"}
+
+    produto = PRODUTOS_DB[produto_id]
+
+    if tipo_retorno == "basico":
+        return {"sucesso": True, "produto": {"nome": produto["nome"], "preco": produto["preco"]}}
+
+    return {"sucesso": True, "produto": produto}
 
 
 def calcular_desconto(preco: float, percentual_desconto: float) -> dict:
@@ -91,7 +102,7 @@ TOOLS = [
         "type": "function",
         "function": {
             "name": "buscar_produto",
-            "description": "Busca informações detalhadas de um produto pelo seu ID. Retorna nome, preço e quantidade em estoque.",
+            "description": "Busca informações de um produto pelo seu ID. Use tipo_retorno='basico' para nome e preço apenas, ou 'completo' para incluir também o estoque.",
             "strict": True,
             "parameters": {
                 "type": "object",
@@ -99,9 +110,14 @@ TOOLS = [
                     "produto_id": {
                         "type": "string",
                         "description": "ID único do produto. Exemplo: 'P001', 'P002'",
-                    }
+                    },
+                    "tipo_retorno": {
+                        "type": "string",
+                        "enum": ["basico", "completo"],
+                        "description": "Nível de detalhe: 'basico' retorna nome e preço; 'completo' retorna nome, preço e estoque.",
+                    },
                 },
-                "required": ["produto_id"],
+                "required": ["produto_id", "tipo_retorno"],
                 "additionalProperties": False,
             },
         },
@@ -188,27 +204,36 @@ Responda sempre em português brasileiro de forma clara e objetiva.""",
         {"role": "user", "content": mensagem_usuario},
     ]
 
-    # Primeira chamada: modelo decide se precisa usar ferramentas
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=messages,
-        tools=TOOLS,
-        tool_choice="auto",  # Modelo decide automaticamente
-    )
+    try:
+        # Primeira chamada: modelo decide se precisa usar ferramentas
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=messages,
+            tools=TOOLS,
+            tool_choice="auto",  # Modelo decide automaticamente
+        )
+    except Exception as e:
+        print(f"\n❌ Erro na chamada à API: {e}")
+        return f"Erro ao processar mensagem: {e}"
 
     response_message = response.choices[0].message
 
     # Verifica se o modelo quer chamar ferramentas
     if response_message.tool_calls:
         print(f"\n[Tool Calling] Modelo solicitou {len(response_message.tool_calls)} ferramenta(s):")
-        
+
         # Adiciona a resposta do assistente ao histórico
         messages.append(response_message)
 
         # Executa cada ferramenta solicitada (suporta parallel tool calling!)
         for tool_call in response_message.tool_calls:
             nome_ferramenta = tool_call.function.name
-            argumentos = json.loads(tool_call.function.arguments)
+
+            try:
+                argumentos = json.loads(tool_call.function.arguments)
+            except json.JSONDecodeError as e:
+                print(f"  ❌ Erro ao decodificar argumentos de '{nome_ferramenta}': {e}")
+                argumentos = {}
 
             print(f"  - {nome_ferramenta}({argumentos})")
 
@@ -231,20 +256,23 @@ Responda sempre em português brasileiro de forma clara e objetiva.""",
                 }
             )
 
-        # Segunda chamada: modelo gera resposta final com os resultados
-        response_final = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=messages,
-        )
-
-        resposta = response_final.choices[0].message.content
+        try:
+            # Segunda chamada: modelo gera resposta final com os resultados
+            response_final = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=messages,
+            )
+            resposta = response_final.choices[0].message.content
+        except Exception as e:
+            print(f"\n❌ Erro na chamada final à API: {e}")
+            return f"Erro ao gerar resposta final: {e}"
     else:
         # Modelo respondeu diretamente sem usar ferramentas
         resposta = response_message.content
 
     print(f"\n[Resposta Final]")
     print(resposta)
-    
+
     return resposta
 
 
@@ -253,17 +281,20 @@ Responda sempre em português brasileiro de forma clara e objetiva.""",
 # =============================================================================
 
 if __name__ == "__main__":
-    # Exemplo 1: Busca simples de produto
-    processar_mensagem("Qual o preço do produto P001?")
+    # Exemplo 1: Busca básica — enum tipo_retorno='basico' (apenas nome e preço)
+    processar_mensagem("Qual o preço do produto P001? Só preciso do nome e preço.")
 
-    # Exemplo 2: Verificação de estoque
+    # Exemplo 2: Busca completa — enum tipo_retorno='completo' (nome, preço e estoque)
+    processar_mensagem("Me dê as informações completas do produto P002.")
+
+    # Exemplo 3: Verificação de estoque
     processar_mensagem("O produto P003 está disponível em estoque?")
 
-    # Exemplo 3: Cálculo de desconto
+    # Exemplo 4: Cálculo de desconto
     processar_mensagem("Se eu aplicar 20% de desconto em um produto de R$ 500, quanto fica?")
 
-    # Exemplo 4: Parallel Tool Calling - múltiplas ferramentas ao mesmo tempo!
+    # Exemplo 5: Parallel Tool Calling - múltiplas ferramentas ao mesmo tempo!
     processar_mensagem("Quero saber o preço do P002 e se o P004 tem em estoque")
 
-    # Exemplo 5: Combinação de ferramentas
+    # Exemplo 6: Combinação de ferramentas
     processar_mensagem("Busque o produto P001 e calcule quanto ficaria com 15% de desconto")

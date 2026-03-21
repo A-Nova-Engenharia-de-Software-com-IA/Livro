@@ -5,9 +5,9 @@
     "paciente_nome": "João da Silva",
     "paciente_cpf": "123.456.789-00",
     "tipo_exame": "Hemograma Completo",
-    "data_solicitacao": "2024-11-15",
-    "data_realizacao": "2024-11-16",
-    "data_resultado": "2024-11-18",
+    "data_solicitacao": "2026-01-15",
+    "data_realizacao": "2026-01-16",
+    "data_resultado": "2026-01-18",
     "status": "disponivel",
     "medico_solicitante": "Dr. Carlos Silva",
     "resultado": {
@@ -24,9 +24,9 @@
     "paciente_nome": "João da Silva",
     "paciente_cpf": "123.456.789-00",
     "tipo_exame": "Eletrocardiograma",
-    "data_solicitacao": "2024-11-15",
-    "data_realizacao": "2024-11-17",
-    "data_resultado": "2024-11-18",
+    "data_solicitacao": "2026-01-15",
+    "data_realizacao": "2026-01-17",
+    "data_resultado": "2026-01-18",
     "status": "disponivel",
     "medico_solicitante": "Dr. Carlos Silva",
     "resultado": {
@@ -42,9 +42,9 @@
     "paciente_nome": "Maria Santos",
     "paciente_cpf": "234.567.890-11",
     "tipo_exame": "Biópsia de Pele",
-    "data_solicitacao": "2024-10-20",
-    "data_realizacao": "2024-10-22",
-    "data_resultado": "2024-10-28",
+    "data_solicitacao": "2026-01-10",
+    "data_realizacao": "2026-01-12",
+    "data_resultado": "2026-01-18",
     "status": "disponivel",
     "medico_solicitante": "Dra. Ana Paula Santos",
     "resultado": {
@@ -58,9 +58,9 @@
     "paciente_nome": "Pedro Oliveira",
     "paciente_cpf": "345.678.901-22",
     "tipo_exame": "Raio-X de Joelho",
-    "data_solicitacao": "2024-09-10",
-    "data_realizacao": "2024-09-11",
-    "data_resultado": "2024-09-12",
+    "data_solicitacao": "2025-12-10",
+    "data_realizacao": "2025-12-11",
+    "data_resultado": "2025-12-12",
     "status": "disponivel",
     "medico_solicitante": "Dr. Roberto Mendes",
     "resultado": {
@@ -74,9 +74,9 @@
     "paciente_nome": "Ana Costa",
     "paciente_cpf": "456.789.012-33",
     "tipo_exame": "Hemograma Infantil",
-    "data_solicitacao": "2024-11-01",
-    "data_realizacao": "2024-11-02",
-    "data_resultado": "2024-11-04",
+    "data_solicitacao": "2026-02-01",
+    "data_realizacao": "2026-02-02",
+    "data_resultado": "2026-02-04",
     "status": "disponivel",
     "medico_solicitante": "Dra. Mariana Costa",
     "resultado": {
@@ -93,9 +93,9 @@
     "paciente_nome": "Carlos Mendes",
     "paciente_cpf": "567.890.123-44",
     "tipo_exame": "Glicemia de Jejum",
-    "data_solicitacao": "2024-10-05",
-    "data_realizacao": "2024-10-06",
-    "data_resultado": "2024-10-07",
+    "data_solicitacao": "2026-02-05",
+    "data_realizacao": "2026-02-06",
+    "data_resultado": "2026-02-07",
     "status": "disponivel",
     "medico_solicitante": "Dr. Fernando Oliveira",
     "resultado": {
@@ -109,7 +109,7 @@
     "paciente_nome": "Maria Santos",
     "paciente_cpf": "234.567.890-11",
     "tipo_exame": "Exame de Sangue Completo",
-    "data_solicitacao": "2024-11-25",
+    "data_solicitacao": "2026-02-14",
     "data_realizacao": null,
     "data_resultado": null,
     "status": "agendado",
@@ -117,4 +117,3 @@
     "resultado": null
   }
 ]
-

@@ -140,11 +140,24 @@ chamada-de-ferramentas/
 
 ## Ferramentas do Exemplo
 
-| Ferramenta          | Descrição                               |
-| ------------------- | --------------------------------------- |
-| `buscar_produto`    | Busca informações de um produto pelo ID |
-| `calcular_desconto` | Calcula preço final após desconto       |
-| `verificar_estoque` | Verifica disponibilidade em estoque     |
+| Ferramenta          | Parâmetros                                   | Descrição                               |
+| ------------------- | -------------------------------------------- | --------------------------------------- |
+| `buscar_produto`    | `produto_id`, `tipo_retorno` (**enum**)      | Busca informações de um produto pelo ID |
+| `calcular_desconto` | `preco`, `percentual_desconto`               | Calcula preço final após desconto       |
+| `verificar_estoque` | `produto_id`                                 | Verifica disponibilidade em estoque     |
+
+### Enum em uso — `buscar_produto.tipo_retorno`
+
+```python
+"tipo_retorno": {
+    "type": "string",
+    "enum": ["basico", "completo"],
+    "description": "Nível de detalhe: 'basico' retorna nome e preço; 'completo' retorna nome, preço e estoque."
+}
+```
+
+- `"basico"` → `{"nome": "Notebook Dell", "preco": 4500.0}`
+- `"completo"` → `{"nome": "Notebook Dell", "preco": 4500.0, "estoque": 15}`
 
 ## Saída Esperada
 

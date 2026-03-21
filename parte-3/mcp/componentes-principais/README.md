@@ -45,10 +45,17 @@ Funções executáveis expostas pelo server, com schemas JSON padronizados.
 ```python
 @mcp.tool()
 def search_emails(query: str, max_results: int = 10) -> dict:
-    """Busca e-mails no Gmail."""
-    # código real que usa Gmail API
-    results = gmail_api.search(query, max_results)
-    return {"emails": results}
+    """Busca e-mails no Gmail (mock)."""
+    # Simulação - em produção usaria Gmail API
+    mock_emails = [
+        {"id": "001", "from": "cliente@exemplo.com", "subject": "Re: Reembolso"},
+        {"id": "002", "from": "suporte@empresa.com", "subject": "Ticket #123 atualizado"},
+    ]
+    results = [
+        e for e in mock_emails
+        if query.lower() in e["subject"].lower() or query.lower() in e["from"].lower()
+    ][:max_results]
+    return {"emails": results, "total": len(results)}
 ```
 
 **Uso no Client:**
