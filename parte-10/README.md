@@ -100,7 +100,22 @@ Após escanear o QR Code e ver a mensagem `WhatsApp pronto.` no terminal:
 "Manda uma mensagem para 5548999999999 dizendo 'reunião às 15h'"
 ```
 
-> O número autorizado a enviar comandos é configurado diretamente no arquivo `src/mastra/whatsapp/client.ts` na variável `AUTHORIZED_NUMBER`.
+> **Configuração do número autorizado:** Por padrão, apenas um número específico pode enviar comandos ao agente. Edite a variável `AUTHORIZED_NUMBER` no arquivo `src/mastra/whatsapp/client.ts` com o seu número no formato `554899999999@lid` (DDI + DDD + número, sem espaços, seguido de `@lid`):
+>
+> ```ts
+> // src/mastra/whatsapp/client.ts
+> const AUTHORIZED_NUMBER = '554899999999@lid' // substitua pelo seu número
+> ```
+>
+> **Para aceitar mensagens de qualquer número** (útil para testes), comente as duas linhas abaixo no mesmo arquivo:
+>
+> ```ts
+> // const AUTHORIZED_NUMBER = '554899999999@lid'
+>
+> whatsappClient.on('message', async (message) => {
+>   console.log(`[WhatsApp] Mensagem de ${message.from}: ${message.body}`)
+>   // if (message.from !== AUTHORIZED_NUMBER) return  // <-- comente esta linha
+> ```
 
 ---
 
