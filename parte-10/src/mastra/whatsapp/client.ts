@@ -40,11 +40,11 @@ whatsappClient.on('disconnected', (reason: string) => {
   setTimeout(() => whatsappClient.initialize(), 5000)
 })
 
-const AUTHORIZED_NUMBER = '128531258433629@lid'
+//const AUTHORIZED_NUMBER = '554899999999@lid'
 
 whatsappClient.on('message', async (message) => {
   console.log(`[WhatsApp] Mensagem de ${message.from}: ${message.body}`)
-  if (message.from !== AUTHORIZED_NUMBER) return
+  //if (message.from !== AUTHORIZED_NUMBER) return
 
   try {
     const { orquestAgent } = await import('../agents/orquest-agent')

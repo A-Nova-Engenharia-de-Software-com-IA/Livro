@@ -9,7 +9,7 @@ const sendMessageTool = createTool({
   description: 'Envia uma mensagem de texto via WhatsApp para um número ou grupo.',
   inputSchema: z.object({
     to: z.string().describe(
-      'Número de destino no formato internacional sem + (ex: 5548991853240) ou ID de grupo (ex: 123456789@g.us). O sufixo @c.us será adicionado automaticamente para números.'
+      'Número de destino no formato internacional sem + (ex: 554899999999) ou ID de grupo (ex: 123456789@g.us). O sufixo @c.us será adicionado automaticamente para números.'
     ),
     message: z.string().describe('Texto da mensagem a ser enviada.'),
   }),
@@ -69,7 +69,7 @@ export const whatsappAgent = new Agent({
 
     Como você deve agir:
     1. Ao receber um pedido de envio, identifique o número/grupo de destino e o texto da mensagem
-    2. Números devem estar no formato internacional sem + (ex: 5548991853240)
+    2. Números devem estar no formato internacional sem + (ex: 554899999999)
     3. Para grupos, use o ID completo com sufixo @g.us
     4. Confirme o envio informando se foi bem-sucedido ou reportando o erro
     5. Nunca envie mensagens sem ter clareza sobre o destinatário e o conteúdo
