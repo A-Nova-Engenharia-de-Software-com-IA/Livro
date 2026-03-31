@@ -1,129 +1,129 @@
-# Agentes IA com Mastra + WhatsApp
+# AI Agents with Mastra + WhatsApp
 
-Projeto de agentes de inteligência artificial construídos com o framework [Mastra](https://mastra.ai/), incluindo um **agente conectado ao WhatsApp** capaz de receber mensagens e responder automaticamente usando IA.
+AI agents built with the [Mastra](https://mastra.ai/) framework, including a **WhatsApp-connected agent** that receives messages and replies automatically using AI.
 
 ---
 
-## O que este projeto faz
+## What this project does
 
-Um **agente orquestrador** recebe mensagens via WhatsApp e delega para agentes especializados:
+An **orchestrator agent** receives messages via WhatsApp and delegates to specialized agents:
 
-| Agente | O que faz |
+| Agent | What it does |
 |---|---|
-| **Orquestrador** | Recebe mensagens do WhatsApp e decide qual agente acionar |
-| **WhatsApp Agent** | Envia mensagens e lista conversas via WhatsApp Web |
-| **Weather Agent** | Consulta previsão do tempo de qualquer cidade |
-| **Running Agent** | Busca eventos e corridas de rua no Brasil |
-| **Supabase Agent** | Consulta e analisa dados do banco via SQL |
+| **Orchestrator** | Receives WhatsApp messages and decides which agent to trigger |
+| **WhatsApp Agent** | Sends messages and lists conversations via WhatsApp Web |
+| **Weather Agent** | Fetches weather forecast for any city |
+| **Running Agent** | Searches for running events and races in Brazil |
+| **Supabase Agent** | Queries and analyzes database data via SQL |
 
 ---
 
-## Pré-requisitos
+## Prerequisites
 
 - Node.js `>= 22.13.0`
-- Conta [OpenAI](https://platform.openai.com/) com chave de API
-- WhatsApp instalado no celular (para escanear o QR Code)
+- [OpenAI](https://platform.openai.com/) account with an API key
+- WhatsApp installed on your phone (to scan the QR Code)
 
 ---
 
-## Instalação
+## Installation
 
-### 1. Clone o repositório
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/A-Nova-Engenharia-de-Software-com-IA/Livro.git
 cd Livro/parte-10
 ```
 
-### 2. Instale as dependências
+### 2. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Configure as variáveis de ambiente
+### 3. Configure environment variables
 
-Copie o arquivo de exemplo e preencha com suas chaves:
+Copy the example file and fill in your keys:
 
 ```bash
 cp .env.example .env
 ```
 
-Edite o `.env`:
+Edit `.env`:
 
 ```env
-OPENAI_API_KEY=sk-proj-...          # Obrigatório
-SUPABASE_PERSONAL_ACCESS_TOKEN=sbp_... # Necessário apenas para o Supabase Agent
+OPENAI_API_KEY=sk-proj-...            # Required
+SUPABASE_PERSONAL_ACCESS_TOKEN=sbp_... # Required only for the Supabase Agent
 ```
 
 ---
 
-## Rodando o projeto
+## Running the project
 
 ```bash
 npm run dev
 ```
 
-Ao iniciar, dois eventos importantes acontecem:
+On startup, two important events happen:
 
-**1. QR Code do WhatsApp aparece no terminal:**
+**1. WhatsApp QR Code appears in the terminal:**
 
 ```
-Escaneie o QR Code abaixo com o WhatsApp:
-(WhatsApp > Dispositivos vinculados > Vincular um dispositivo)
+Scan the QR Code below with WhatsApp:
+(WhatsApp > Linked Devices > Link a Device)
 
-[QR CODE AQUI]
+[QR CODE HERE]
 ```
 
-Abra o WhatsApp no celular > **Dispositivos vinculados** > **Vincular um dispositivo** > escaneie o QR.
+Open WhatsApp on your phone > **Linked Devices** > **Link a Device** > scan the QR.
 
-**2. Mastra Studio abre em [http://localhost:4111](http://localhost:4111)**
+**2. Mastra Studio opens at [http://localhost:4111](http://localhost:4111)**
 
-Interface visual para testar e interagir com os agentes diretamente pelo browser.
+Visual interface to test and interact with agents directly in the browser.
 
 ---
 
-## Como usar o agente do WhatsApp
+## How to use the WhatsApp agent
 
-Após escanear o QR Code e ver a mensagem `WhatsApp pronto.` no terminal:
+After scanning the QR Code and seeing `WhatsApp pronto.` in the terminal:
 
-1. Envie uma mensagem do número autorizado para o número vinculado
-2. O **agente orquestrador** recebe a mensagem automaticamente
-3. Ele analisa o pedido e aciona o agente certo
-4. A resposta é enviada de volta via WhatsApp
+1. Send a message from the authorized number to the linked number
+2. The **orchestrator agent** receives the message automatically
+3. It analyzes the request and triggers the right agent
+4. The response is sent back via WhatsApp
 
-**Exemplos de mensagens que funcionam:**
+**Example messages:**
 
 ```
-"Qual a previsão do tempo em Florianópolis hoje?"
-"Me lista as corridas de rua em SC para outubro"
-"Manda uma mensagem para 5548999999999 dizendo 'reunião às 15h'"
+"What's the weather forecast in Florianópolis today?"
+"List running races in SC for October"
+"Send a message to 5548999999999 saying 'meeting at 3pm'"
 ```
 
-> **Configuração do número autorizado:** Por padrão, apenas um número específico pode enviar comandos ao agente. Edite a variável `AUTHORIZED_NUMBER` no arquivo `src/mastra/whatsapp/client.ts` com o seu número no formato `554899999999@lid` (DDI + DDD + número, sem espaços, seguido de `@lid`):
+> **Authorized number setup:** By default, only one specific number can send commands to the agent. Edit the `AUTHORIZED_NUMBER` variable in `src/mastra/whatsapp/client.ts` with your number in the format `554899999999@lid` (country code + area code + number, no spaces, followed by `@lid`):
 >
 > ```ts
 > // src/mastra/whatsapp/client.ts
-> const AUTHORIZED_NUMBER = '554899999999@lid' // substitua pelo seu número
+> const AUTHORIZED_NUMBER = '554899999999@lid' // replace with your number
 > ```
 >
-> **Para aceitar mensagens de qualquer número** (útil para testes), comente as duas linhas abaixo no mesmo arquivo:
+> **To accept messages from any number** (useful for testing), comment out these two lines in the same file:
 >
 > ```ts
 > // const AUTHORIZED_NUMBER = '554899999999@lid'
 >
 > whatsappClient.on('message', async (message) => {
 >   console.log(`[WhatsApp] Mensagem de ${message.from}: ${message.body}`)
->   // if (message.from !== AUTHORIZED_NUMBER) return  // <-- comente esta linha
+>   // if (message.from !== AUTHORIZED_NUMBER) return  // <-- comment this line out
 > ```
 
 ---
 
-## Sessão do WhatsApp
+## WhatsApp session
 
-A sessão é salva localmente em `src/mastra/public/.wwebjs_auth/` — você **não precisa escanear o QR Code toda vez**. A sessão persiste entre reinicializações.
+The session is saved locally at `src/mastra/public/.wwebjs_auth/` — you **do not need to scan the QR Code every time**. The session persists across restarts.
 
-Se precisar resetar a sessão (trocar de conta, por exemplo), delete essa pasta:
+To reset the session (e.g., to switch accounts), delete that folder:
 
 ```bash
 rm -rf src/mastra/public/.wwebjs_auth
@@ -131,7 +131,7 @@ rm -rf src/mastra/public/.wwebjs_auth
 
 ---
 
-## Build para produção
+## Production build
 
 ```bash
 npm run build
@@ -140,25 +140,25 @@ npm start
 
 ---
 
-## Estrutura do projeto
+## Project structure
 
 ```
 src/mastra/
 ├── agents/
-│   ├── orquest-agent.ts      # Orquestrador principal
-│   ├── whatsapp-agent.ts     # Envia mensagens e lista chats
-│   ├── weather-agent.ts      # Previsão do tempo
-│   ├── running-agent.ts      # Corridas de rua
-│   └── supabase-agent.ts     # Consultas SQL no Supabase
+│   ├── orquest-agent.ts      # Main orchestrator
+│   ├── whatsapp-agent.ts     # Sends messages and lists chats
+│   ├── weather-agent.ts      # Weather forecast
+│   ├── running-agent.ts      # Running races
+│   └── supabase-agent.ts     # SQL queries on Supabase
 ├── whatsapp/
-│   └── client.ts             # Conexão WhatsApp Web + listener de mensagens
-├── tools/                    # Ferramentas reutilizáveis dos agentes
-└── index.ts                  # Configuração central do Mastra
+│   └── client.ts             # WhatsApp Web connection + message listener
+├── tools/                    # Reusable agent tools
+└── index.ts                  # Central Mastra configuration
 ```
 
 ---
 
-## Saiba mais
+## Learn more
 
-- [Documentação do Mastra](https://mastra.ai/docs/)
+- [Mastra Documentation](https://mastra.ai/docs/)
 - [whatsapp-web.js](https://wwebjs.dev/)
