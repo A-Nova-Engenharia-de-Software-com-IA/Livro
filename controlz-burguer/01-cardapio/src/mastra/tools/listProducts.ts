@@ -1,0 +1,29 @@
+import { createTool } from "@mastra/core/tools";
+import { z } from "zod";
+import { products } from "../store";
+
+export const listProductsTool = createTool({
+  id: "listProducts",
+  description: "Lista produtos do cardápio, opcionalmente filtrando por categoria",
+  inputSchema: z.object({
+    category: z.string().optional().describe("Filtrar por categoria"),
+  }),
+  outputSchema: z.object({
+    products: z.array(z.object({
+      id: z.string(),
+      name: z.string(),
+      price: z.number(),
+      category: z.string(),
+      variations: z.array(z.string()).optional(),
+      active: z.boolean(),
+    })),
+    total: z.number(),
+  }),
+  execute: async ({ category }) => {
+    let list = Array.from(products.values());
+    if (category) {
+      list = list.filter(p => p.category.toLowerCase() === category.toLowerCase());
+    }
+    return { products: list, total: list.length };
+  },
+});
