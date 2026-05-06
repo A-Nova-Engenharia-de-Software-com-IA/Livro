@@ -1,10 +1,13 @@
 import { Agent } from "@mastra/core/agent";
 import { openai } from "@ai-sdk/openai";
+import { LibSQLStore } from "@mastra/libsql";
+import { Memory } from "@mastra/memory";
 import { createProductTool } from "../tools/createProduct";
 import { listProductsTool } from "../tools/listProducts";
 import { getProductTool } from "../tools/getProduct";
 import { updateProductTool } from "../tools/updateProduct";
 import { deleteProductTool } from "../tools/deleteProduct";
+import { DB_URL } from "../store";
 
 export const cardapioAgent = new Agent({
   id: "cardapio-agent",
@@ -23,4 +26,7 @@ Seja objetivo, amigável e use linguagem simples.`,
     updateProduct: updateProductTool,
     deleteProduct: deleteProductTool,
   },
+  memory: new Memory({
+    storage: new LibSQLStore({ id: "libsql", url: DB_URL }),
+  }),
 });

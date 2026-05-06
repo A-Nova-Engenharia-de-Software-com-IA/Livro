@@ -1,9 +1,12 @@
 import { Agent } from "@mastra/core/agent";
 import { openai } from "@ai-sdk/openai";
+import { LibSQLStore } from "@mastra/libsql";
 import { createOrderTool } from "../tools/createOrder";
 import { listOrdersTool } from "../tools/listOrders";
 import { getOrderTool } from "../tools/getOrder";
 import { updateOrderStatusTool } from "../tools/updateOrderStatus";
+import { Memory } from "@mastra/memory";
+import { DB_URL } from "../store";
 
 export const pedidosAgent = new Agent({
   id: "pedidos-agent",
@@ -21,4 +24,7 @@ Em caso de cancelamento, confirme antes de alterar o status.`,
     getOrder: getOrderTool,
     updateOrderStatus: updateOrderStatusTool,
   },
+  memory: new Memory({
+    storage: new LibSQLStore({ id: "libsql", url: DB_URL }),
+  }),
 });

@@ -6,6 +6,7 @@ import { validateCouponTool } from "../tools/validateCoupon";
 import { applyTimeBasedRuleTool } from "../tools/applyTimeBasedRule";
 
 export const promocoesAgent = new Agent({
+  id: "promocoes-agent",
   name: "promocoesAgent",
   description: "Gerencia cupons de desconto e regras de promoção da ControlZ Burger.",
   instructions: `Você é o gerente de promoções da ControlZ Burger.

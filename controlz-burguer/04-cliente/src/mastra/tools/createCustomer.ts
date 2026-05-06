@@ -1,7 +1,6 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
-import { customers, type Customer } from "../store";
-import { randomUUID } from "crypto";
+import { insertCustomer } from "../store";
 
 export const createCustomerTool = createTool({
   id: "createCustomer",
@@ -20,16 +19,6 @@ export const createCustomerTool = createTool({
     createdAt: z.string(),
   }),
   execute: async ({ name, phone, email, preferences }) => {
-    const customer: Customer = {
-      id: randomUUID(),
-      name,
-      phone,
-      email,
-      preferences: preferences ?? [],
-      points: 0,
-      createdAt: new Date().toISOString(),
-    };
-    customers.set(customer.id, customer);
-    return customer;
+    return insertCustomer({ name, phone, email, preferences });
   },
 });

@@ -1,6 +1,6 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
-import { customers, orderHistory } from "../store";
+import { getCustomerById, getCustomerOrderIds } from "../store";
 
 export const getCustomerHistoryTool = createTool({
   id: "getCustomerHistory",
@@ -13,11 +13,12 @@ export const getCustomerHistoryTool = createTool({
     customerName: z.string().nullable(),
     orderIds: z.array(z.string()),
     totalOrders: z.number(),
-    // TODO: integrar com o serviço 02-pedidos para buscar dados reais dos pedidos
   }),
   execute: async ({ id }) => {
-    const customer = customers.get(id);
-    const orderIds = orderHistory.get(id) ?? [];
+    const [customer, orderIds] = await Promise.all([
+      getCustomerById(id),
+      getCustomerOrderIds(id),
+    ]);
     return {
       customerId: id,
       customerName: customer?.name ?? null,

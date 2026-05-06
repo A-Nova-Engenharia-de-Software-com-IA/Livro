@@ -1,7 +1,6 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
-import { orders, type Order } from "../store";
-import { randomUUID } from "crypto";
+import { insertOrder } from "../store";
 
 export const createOrderTool = createTool({
   id: "createOrder",
@@ -24,19 +23,6 @@ export const createOrderTool = createTool({
     createdAt: z.string(),
   }),
   execute: async ({ customerId, items, paymentMethod }) => {
-    const total = items.reduce((sum, i) => sum + i.qty * i.unitPrice, 0);
-    const now = new Date().toISOString();
-    const order: Order = {
-      id: randomUUID(),
-      customerId,
-      items,
-      paymentMethod,
-      status: "novo",
-      total: parseFloat(total.toFixed(2)),
-      createdAt: now,
-      updatedAt: now,
-    };
-    orders.set(order.id, order);
-    return order;
+    return insertOrder({ customerId, items, paymentMethod });
   },
 });

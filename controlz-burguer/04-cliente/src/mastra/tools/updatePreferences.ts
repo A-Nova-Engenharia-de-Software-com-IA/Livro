@@ -1,6 +1,6 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
-import { customers } from "../store";
+import { updateCustomerPreferences } from "../store";
 
 export const updatePreferencesTool = createTool({
   id: "updatePreferences",
@@ -15,9 +15,11 @@ export const updatePreferencesTool = createTool({
     preferences: z.array(z.string()),
   }),
   execute: async ({ id, preferences }) => {
-    const customer = customers.get(id);
-    if (!customer) return { success: false, customerId: id, preferences: [] };
-    customers.set(id, { ...customer, preferences });
-    return { success: true, customerId: id, preferences };
+    const customer = await updateCustomerPreferences(id, preferences);
+    return {
+      success: !!customer,
+      customerId: id,
+      preferences: customer?.preferences ?? [],
+    };
   },
 });

@@ -1,6 +1,6 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
-import { products } from "../store";
+import { deleteProductById } from "../store";
 
 export const deleteProductTool = createTool({
   id: "deleteProduct",
@@ -13,10 +13,10 @@ export const deleteProductTool = createTool({
     message: z.string(),
   }),
   execute: async ({ id }) => {
-    const existed = products.delete(id);
+    const deleted = await deleteProductById(id);
     return {
-      success: existed,
-      message: existed ? "Produto removido com sucesso" : "Produto não encontrado",
+      success: deleted,
+      message: deleted ? "Produto removido com sucesso" : "Produto não encontrado",
     };
   },
 });

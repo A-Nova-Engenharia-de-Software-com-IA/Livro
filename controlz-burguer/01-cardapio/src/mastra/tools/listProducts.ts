@@ -1,6 +1,6 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
-import { products } from "../store";
+import { getAllProducts } from "../store";
 
 export const listProductsTool = createTool({
   id: "listProducts",
@@ -20,10 +20,7 @@ export const listProductsTool = createTool({
     total: z.number(),
   }),
   execute: async ({ category }) => {
-    let list = Array.from(products.values());
-    if (category) {
-      list = list.filter(p => p.category.toLowerCase() === category.toLowerCase());
-    }
+    const list = await getAllProducts(category);
     return { products: list, total: list.length };
   },
 });

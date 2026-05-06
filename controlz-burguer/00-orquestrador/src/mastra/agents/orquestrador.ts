@@ -13,6 +13,8 @@ import { relatoriosTool } from "../tools/relatorios";
 import { notificacoesTool } from "../tools/notificacoes";
 import { marketingTool } from "../tools/marketing";
 import { Memory } from "@mastra/memory";
+import { LibSQLStore } from "@mastra/libsql";
+import { DB_URL } from "../db-url";
 
 export const orquestradorAgent = new Agent({
   id: "orquestrador-agent",
@@ -52,5 +54,7 @@ Responda sempre em português, de forma clara e organizada.`,
     notificacoes: notificacoesTool,
     marketing: marketingTool,
   },
-  memory: new Memory(),  // usa o LibSQLStore do Mastra automaticamente
+  memory: new Memory({
+    storage: new LibSQLStore({ id: "libsql", url: DB_URL }),
+  }),
 });

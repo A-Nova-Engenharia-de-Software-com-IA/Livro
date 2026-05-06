@@ -1,7 +1,6 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
-import { products, type Product } from "../store";
-import { randomUUID } from "crypto";
+import { insertProduct } from "../store";
 
 export const createProductTool = createTool({
   id: "createProduct",
@@ -20,16 +19,6 @@ export const createProductTool = createTool({
     createdAt: z.string(),
   }),
   execute: async ({ name, price, category, variations }) => {
-    const product: Product = {
-      id: randomUUID(),
-      name,
-      price,
-      category,
-      variations,
-      active: true,
-      createdAt: new Date().toISOString(),
-    };
-    products.set(product.id, product);
-    return product;
+    return insertProduct({ name, price, category, variations, active: true });
   },
 });

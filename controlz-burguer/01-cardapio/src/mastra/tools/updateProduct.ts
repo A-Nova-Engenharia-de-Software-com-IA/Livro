@@ -1,6 +1,6 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
-import { products } from "../store";
+import { updateProductById } from "../store";
 
 export const updateProductTool = createTool({
   id: "updateProduct",
@@ -25,10 +25,7 @@ export const updateProductTool = createTool({
     }).nullable(),
   }),
   execute: async ({ id, fields }) => {
-    const product = products.get(id);
-    if (!product) return { success: false, product: null };
-    const updated = { ...product, ...fields };
-    products.set(id, updated);
-    return { success: true, product: updated };
+    const product = await updateProductById(id, fields);
+    return { success: !!product, product };
   },
 });

@@ -1,6 +1,6 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
-import { customers } from "../store";
+import { getAllCustomers } from "../store";
 
 export const listCustomersTool = createTool({
   id: "listCustomers",
@@ -18,11 +18,7 @@ export const listCustomersTool = createTool({
     total: z.number(),
   }),
   execute: async ({ search }) => {
-    let list = Array.from(customers.values());
-    if (search) {
-      const q = search.toLowerCase();
-      list = list.filter(c => c.name.toLowerCase().includes(q) || c.phone.includes(q));
-    }
+    const list = await getAllCustomers(search);
     return { customers: list, total: list.length };
   },
 });

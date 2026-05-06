@@ -4,5 +4,5 @@ import { entregadorAgent } from "./agents/entregador";
 
 export const mastra = new Mastra({
   agents: { entregadorAgent },
-  storage: new LibSQLStore({ id: "libsql", url: "file:./mastra.db" }),
+    storage: new LibSQLStore({ id: "libsql", url: "file:/Users/rafaelscheidt/foka/projects/personal/flutter-aula/estudos/Livro/controlz-burguer/database/mastra.db" }),
 });

@@ -1,10 +1,14 @@
 import { Agent } from "@mastra/core/agent";
 import { openai } from "@ai-sdk/openai";
+import { LibSQLStore } from "@mastra/libsql";
+import { Memory } from "@mastra/memory";
 import { createCustomerTool } from "../tools/createCustomer";
 import { getCustomerTool } from "../tools/getCustomer";
 import { listCustomersTool } from "../tools/listCustomers";
 import { updatePreferencesTool } from "../tools/updatePreferences";
 import { getCustomerHistoryTool } from "../tools/getCustomerHistory";
+import { DB_URL } from "../store";
+
 export const clienteAgent = new Agent({
   id: "cliente-agent",
   name: "clienteAgent",
@@ -22,4 +26,7 @@ Trate cada cliente pelo nome e seja sempre cordial.`,
     updatePreferences: updatePreferencesTool,
     getCustomerHistory: getCustomerHistoryTool,
   },
+  memory: new Memory({
+    storage: new LibSQLStore({ id: "libsql", url: DB_URL }),
+  }),
 });

@@ -1,6 +1,6 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
-import { orders } from "../store";
+import { getOrderById } from "../store";
 
 export const getOrderTool = createTool({
   id: "getOrder",
@@ -26,7 +26,7 @@ export const getOrderTool = createTool({
     found: z.boolean(),
   }),
   execute: async ({ id }) => {
-    const order = orders.get(id) ?? null;
+    const order = await getOrderById(id);
     return { order, found: !!order };
   },
 });
